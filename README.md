@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Latens
 
-## Getting Started
+> *"Awaken your latent potential"*
 
-First, run the development server:
+**Latens** is a tool that gently awakens sleeping projects, allowing each project to remember and communicate for itself where it left off and what it planned to continue.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## The Problem
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+As developers, we all have repositories that naturally go into pause:
+- Side projects we started with enthusiasm
+- POCs and experiments left in light sleep
+- Projects that rotated to another team
+- Ideas that didn't gain initial traction
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+When we want to wake them up, we face the fact that they've lost consciousness of their own state:
+- The project doesn't remember what it was doing
+- It can't explain why it made certain decisions
+- It has forgotten at what exact point it fell asleep
+- It doesn't know what it planned to achieve
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## The Solution
 
-## Learn More
+### Latens Score
+Visual metric indicating how deep a project's "sleep" is:
+- **Light Sleep** (0-30): Recent active development
+- **Standard Sleep** (31-60): Moderate pause, intermediate difficult to awake
+- **Deep Sleep** (61-100): Deep sleep, requires careful awakening
 
-To learn more about Next.js, take a look at the following resources:
+### Latens Recovery
+Process that allows the project to remember its own state:
+- Remembers what it was working on
+- Identifies technical decisions it had made
+- Recognizes the direction it was following
+- Recalls its ideas and experiments in progress
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Latens Awakening
+The natural awakening of the project, where it speaks for itself:
+> *"Mmm... I was working on the authentication API..."*  
+> *"I had the JWT integration almost ready..."*  
+> *"Next was implementing the middleware..."*  
+> *"Oh yes, I needed to test the refresh token..."*
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Tech Stack
 
-## Deploy on Vercel
+- **Frontend**: Next.js 14 + TypeScript + Tailwind CSS
+- **Backend**: Go + Fiber + MongoDB
+- **Authentication**: GitHub OAuth
+- **Analysis**: OpenAI API
+- **Deploy**: Vercel + Digital Ocean
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project Status
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🚧 **MVP in development** - Target: September 30, 2025
+
+---
+
+*"Because every project deserves to be awakened, and every developer deserves to remember their dreams."*
