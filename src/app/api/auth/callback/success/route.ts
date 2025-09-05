@@ -1,10 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
+import { getServerSession } from "next-auth/next";
+import GitHubProvider from "next-auth/providers/github";
+
+// Auth options that match our main configuration
+const authOptions = {
+  providers: [
+    GitHubProvider({
+      clientId: process.env.GITHUB_CLIENT_ID!,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET!,
+    }),
+  ],
+};
 
 export async function GET(request: NextRequest) {
   try {
     // Get the authenticated user session
-    const session = await auth();
+    const session = await getServerSession(authOptions);
     
     if (!session || !session.user) {
       // Redirect to home page if no authentication
@@ -13,7 +24,7 @@ export async function GET(request: NextRequest) {
 
     // Prepare user data to send to backend
     const userData = {
-      id: session.user.id || session.user.email, // Fallback to email if no id
+      id: session.user.email, // In v4, ID might not be available, use email as fallback
       name: session.user.name,
       email: session.user.email,
       image: session.user.image,
