@@ -211,23 +211,23 @@ Animation: Gentle pulse for deep sleep
 
 ---
 
-## Estados del Sleep Score
+## Sleep Score States
 
-### Visualización por Estado
+### State Visualization
 
-#### Tema Claro (Dawn)
-| Estado | Color | Efecto Visual | Animación |
+#### Light Theme (Dawn)
+| State | Color | Visual Effect | Animation |
 |--------|-------|---------------|-----------|
-| **Light Sleep (0-30)** | `#F59E0B` | Sin efectos | Respiración (4s) |
-| **Standard Sleep (31-60)** | `#8B5CF6` | Blur leve | Pulse lento (5s) |
-| **Deep Sleep (61-100)** | `#A855F7` | Blur moderado | Pulse muy lento (6s) |
+| **Light Sleep (0-30)** | `#F59E0B` | No effects | Breathing (4s) |
+| **Standard Sleep (31-60)** | `#8B5CF6` | Light blur | Slow pulse (5s) |
+| **Deep Sleep (61-100)** | `#A855F7` | Moderate blur | Very slow pulse (6s) |
 
-#### Tema Oscuro (Midnight)
-| Estado | Color | Efecto Visual | Animación |
+#### Dark Theme (Midnight)
+| State | Color | Visual Effect | Animation |
 |--------|-------|---------------|-----------|
-| **Light Sleep (0-30)** | `#F97316` | Sin efectos | Respiración (4s) |
-| **Standard Sleep (31-60)** | `#A855F7` | Blur leve | Pulse lento (5s) |
-| **Deep Sleep (61-100)** | `#7C3AED` | Blur moderado | Pulse muy lento (6s) |
+| **Light Sleep (0-30)** | `#F97316` | No effects | Breathing (4s) |
+| **Standard Sleep (31-60)** | `#A855F7` | Light blur | Slow pulse (5s) |
+| **Deep Sleep (61-100)** | `#7C3AED` | Moderate blur | Very slow pulse (6s) |
 
 ### Transiciones entre Estados
 - **Duración**: 1200ms
