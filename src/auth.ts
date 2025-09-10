@@ -2,14 +2,6 @@ import NextAuth from "next-auth"
 import GitHub from "next-auth/providers/github"
 import type { NextAuthConfig } from "next-auth"
 
-interface GitHubProfile {
-  id: string
-  login: string
-  email?: string
-  name?: string
-  avatar_url: string
-}
-
 export const authConfig: NextAuthConfig = {
   providers: [
     GitHub({
@@ -25,20 +17,19 @@ export const authConfig: NextAuthConfig = {
   callbacks: {
     async jwt({ token, account, profile }) {
       // Store the GitHub access token in the JWT
-      if (account && account.provider === "github") {
-        const githubProfile = profile as GitHubProfile | undefined
-        token.accessToken = account.access_token || undefined
-        token.githubId = githubProfile?.id
-        token.username = githubProfile?.login
-        token.avatarUrl = githubProfile?.avatar_url
+      if (account && account.provider === "github" && profile && account.access_token) {
+        token.accessToken = account.access_token
+        token.githubId = profile.id || undefined
+        token.username = profile.login || undefined
+        token.avatarUrl = profile.avatar_url || undefined
         
         // Console log to show GitHub info including token
         console.log("GitHub OAuth Info:", {
-          githubId: githubProfile?.id,
-          username: githubProfile?.login,
-          email: githubProfile?.email,
-          name: githubProfile?.name,
-          avatarUrl: githubProfile?.avatar_url,
+          githubId: profile.id,
+          username: profile.login,
+          email: profile.email,
+          name: profile.name,
+          avatarUrl: profile.avatar_url,
           accessToken: account.access_token,
           scope: account.scope,
           tokenType: account.token_type
@@ -49,51 +40,60 @@ export const authConfig: NextAuthConfig = {
     
     async session({ session, token }) {
       // Expose user data in the session
-      if (token) {
+      if (token?.githubId && token?.username && token?.avatarUrl && token?.accessToken) {
         session.user.id = token.sub!
-        session.user.githubId = token.githubId as string
-        session.user.username = token.username as string
-        session.user.avatarUrl = token.avatarUrl as string
+        session.user.githubId = token.githubId
+        session.user.username = token.username
+        session.user.avatarUrl = token.avatarUrl
         // Include the GitHub access token for API calls
-        session.accessToken = token.accessToken as string
+        session.accessToken = token.accessToken
       }
       return session
     },
     
     async signIn({ user, account, profile }) {
-      // After successful sign in, sync with backend if URL is configured
-      if (account?.provider === "github" && process.env.BACKEND_SERVER_URL) {
-        const githubProfile = profile as GitHubProfile | undefined
-        try {
-          const backendUrl = process.env.BACKEND_SERVER_URL
-          console.log(`Syncing user data with backend at ${backendUrl}/auth/sync`)
-          
-          const response = await fetch(`${backendUrl}/auth/sync`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              github_id: githubProfile?.id,
-              username: githubProfile?.login,
-              email: githubProfile?.email || user.email,
-              access_token: account.access_token,
-              avatar_url: githubProfile?.avatar_url || user.image
-            })
-          })
-          
-          if (!response.ok) {
-            console.error("Failed to sync with backend:", response.status, response.statusText)
-            // We still allow sign in even if backend sync fails
-          } else {
-            console.log("Successfully synced with backend")
-          }
-        } catch (error) {
-          console.error("Error syncing with backend:", error)
-          // We still allow sign in even if backend sync fails
+      // Early return guard: ensure we have all required data for GitHub auth
+      if (
+        account?.provider !== "github" || 
+        !profile || 
+        !process.env.BACKEND_SERVER_URL ||
+        !account.access_token
+      ) {
+        if (!process.env.BACKEND_SERVER_URL) {
+          console.error("BACKEND_SERVER_URL is required but not configured")
+          return false // Reject sign in if backend URL is missing
         }
-      } else if (!process.env.BACKEND_SERVER_URL) {
-        console.log("BACKEND_SERVER_URL not configured, skipping backend sync")
+        return true // Allow sign in for other edge cases
+      }
+
+      // All required data is available, proceed with backend sync
+      try {
+        const backendUrl = process.env.BACKEND_SERVER_URL
+        console.log(`Syncing user data with backend at ${backendUrl}/auth/sync`)
+        
+        const response = await fetch(`${backendUrl}/auth/sync`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            github_id: profile.id,
+            username: profile.login,
+            email: profile.email || user.email,
+            access_token: account.access_token,
+            avatar_url: profile.avatar_url || user.image
+          })
+        })
+        
+        if (!response.ok) {
+          console.error("Failed to sync with backend:", response.status, response.statusText)
+          // We still allow sign in even if backend sync fails
+        } else {
+          console.log("Successfully synced with backend")
+        }
+      } catch (error) {
+        console.error("Error syncing with backend:", error)
+        // We still allow sign in even if backend sync fails
       }
       
       return true // Allow sign in

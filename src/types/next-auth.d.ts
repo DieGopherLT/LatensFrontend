@@ -16,11 +16,24 @@ declare module "next-auth" {
   }
 
   interface Profile {
-    id?: string
-    login?: string
-    email?: string
-    name?: string
-    avatar_url?: string
+    id: string
+    login: string
+    email?: string | null
+    name?: string | null
+    avatar_url: string
+  }
+
+  interface User {
+    id: string
+    email?: string | null
+    name?: string | null
+    image?: string | null
+  }
+
+  interface Account {
+    access_token?: string
+    scope?: string
+    token_type?: string
   }
 }
 
