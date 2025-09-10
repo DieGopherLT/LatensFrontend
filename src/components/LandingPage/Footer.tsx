@@ -1,4 +1,4 @@
-import { Github, Heart, Coffee } from 'lucide-react';
+import { Coffee, Github, Heart } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -8,62 +8,62 @@ const Footer = () => {
       { name: 'Features', href: '#features' },
       { name: 'How it Works', href: '#how-it-works' },
       { name: 'Sleep States', href: '#sleep-states' },
-      { name: 'Pricing', href: '#pricing' }
+      { name: 'Pricing', href: '#pricing' },
     ],
     resources: [
       { name: 'Documentation', href: '/docs' },
       { name: 'API Reference', href: '/api' },
       { name: 'GitHub', href: 'https://github.com/latens' },
-      { name: 'Blog', href: '/blog' }
+      { name: 'Blog', href: '/blog' },
     ],
     company: [
       { name: 'About', href: '/about' },
       { name: 'Privacy', href: '/privacy' },
       { name: 'Terms', href: '/terms' },
-      { name: 'Contact', href: '/contact' }
-    ]
+      { name: 'Contact', href: '/contact' },
+    ],
   };
 
   return (
-    <footer className="bg-muted/30 border-t border-border">
+    <footer className="border-t border-border bg-muted/30">
       <div className="container mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-12">
           {/* Brand section */}
           <div className="lg:col-span-5">
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
-                <div className="w-4 h-4 bg-background rounded-full sleep-light-decoration" />
+            <div className="mb-4 flex items-center space-x-2">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent">
+                <div className="sleep-light-decoration h-4 w-4 rounded-full bg-background" />
               </div>
               <span className="text-2xl font-bold text-foreground">Latens</span>
             </div>
-            
-            <p className="text-muted-foreground mb-6 leading-relaxed max-w-md">
-              Awakening sleeping projects with intelligent analysis and contextual recovery. 
-              Get back to productive development in minutes, not hours.
+
+            <p className="mb-6 max-w-md leading-relaxed text-muted-foreground">
+              Awakening sleeping projects with intelligent analysis and contextual recovery. Get
+              back to productive development in minutes, not hours.
             </p>
 
             <div className="flex items-center space-x-4">
               <a
                 href="https://github.com/latens"
-                className="p-2 bg-muted hover:bg-muted/80 rounded-lg text-muted-foreground hover:text-foreground transition-all duration-300 group hover:scale-110 hover:rotate-6 hover:shadow-lg hover:shadow-primary/20 interactive-glow"
+                className="group interactive-glow rounded-lg bg-muted p-2 text-muted-foreground transition-all duration-300 hover:scale-110 hover:rotate-6 hover:bg-muted/80 hover:text-foreground hover:shadow-lg hover:shadow-primary/20"
                 aria-label="GitHub"
               >
-                <Github className="w-5 h-5 transition-all duration-300 group-hover:scale-110" />
+                <Github className="h-5 w-5 transition-all duration-300 group-hover:scale-110" />
               </a>
-              
+
               <div className="flex items-center space-x-2 text-sm text-muted-foreground">
                 <span>Made with</span>
-                <Heart className="w-4 h-4 text-destructive fill-current animate-gentle-bounce" />
+                <Heart className="animate-gentle-bounce h-4 w-4 fill-current text-destructive" />
                 <span>and</span>
-                <Coffee className="w-4 h-4 text-accent hover:scale-125 transition-transform duration-300 cursor-pointer" />
+                <Coffee className="h-4 w-4 cursor-pointer text-accent transition-transform duration-300 hover:scale-125" />
               </div>
             </div>
           </div>
 
           {/* Links sections */}
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:col-span-7">
             <div>
-              <h3 className="text-sm font-bold text-foreground mb-4 uppercase tracking-wide">
+              <h3 className="mb-4 text-sm font-bold tracking-wide text-foreground uppercase">
                 Product
               </h3>
               <ul className="space-y-3">
@@ -71,7 +71,7 @@ const Footer = () => {
                   <li key={link.name}>
                     <a
                       href={link.href}
-                      className="text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm"
+                      className="text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground"
                     >
                       {link.name}
                     </a>
@@ -81,7 +81,7 @@ const Footer = () => {
             </div>
 
             <div>
-              <h3 className="text-sm font-bold text-foreground mb-4 uppercase tracking-wide">
+              <h3 className="mb-4 text-sm font-bold tracking-wide text-foreground uppercase">
                 Resources
               </h3>
               <ul className="space-y-3">
@@ -89,7 +89,7 @@ const Footer = () => {
                   <li key={link.name}>
                     <a
                       href={link.href}
-                      className="text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm"
+                      className="text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground"
                       target={link.href.startsWith('http') ? '_blank' : undefined}
                       rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                     >
@@ -101,7 +101,7 @@ const Footer = () => {
             </div>
 
             <div>
-              <h3 className="text-sm font-bold text-foreground mb-4 uppercase tracking-wide">
+              <h3 className="mb-4 text-sm font-bold tracking-wide text-foreground uppercase">
                 Company
               </h3>
               <ul className="space-y-3">
@@ -109,7 +109,7 @@ const Footer = () => {
                   <li key={link.name}>
                     <a
                       href={link.href}
-                      className="text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm"
+                      className="text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground"
                     >
                       {link.name}
                     </a>
@@ -121,23 +121,21 @@ const Footer = () => {
         </div>
 
         {/* Bottom section */}
-        <div className="border-t border-border pt-8 mt-12">
-          <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+        <div className="mt-12 border-t border-border pt-8">
+          <div className="flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">
             <div className="text-sm text-muted-foreground">
               © {currentYear} Latens. All rights reserved.
             </div>
-            
+
             <div className="flex items-center space-x-6 text-sm text-muted-foreground">
               <span className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-primary rounded-full sleep-light-decoration" />
+                <div className="sleep-light-decoration h-2 w-2 rounded-full bg-primary" />
                 <span>Status: Fully Awake</span>
               </span>
-              
-              <div className="hidden md:block w-px h-4 bg-border" />
-              
-              <span>
-                Built with Next.js & Tailwind CSS
-              </span>
+
+              <div className="hidden h-4 w-px bg-border md:block" />
+
+              <span>Built with Next.js & Tailwind CSS</span>
             </div>
           </div>
         </div>

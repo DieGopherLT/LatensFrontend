@@ -7,8 +7,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 **Latens** is a tool for awakening sleeping projects by analyzing repository state and providing contextual memory of where development left off. The frontend is built with Next.js 15 + TypeScript + Tailwind CSS 4.
 
 ### Core Concept
+
 Projects have a "Sleep Score" indicating development inactivity:
-- **Light Sleep (0-30)**: Recent active development  
+
+- **Light Sleep (0-30)**: Recent active development
 - **Standard Sleep (31-60)**: Moderate pause, intermediate difficulty to awake
 - **Deep Sleep (61-100)**: Deep sleep, requires careful awakening
 
@@ -20,7 +22,7 @@ The tool performs "Latens Recovery" to help projects remember their state and "L
 # Development with Turbopack
 npm run dev
 
-# Production build with Turbopack  
+# Production build with Turbopack
 npm run build
 
 # Start production server
@@ -33,16 +35,20 @@ npm run lint
 ## Architecture References
 
 ### Tech Stack & Dependencies
+
 See `@docs/stack.md` for complete frontend dependencies and planned integration details.
 
 ### Design System
+
 The project implements the **Latens Design System** - see `@docs/design.md` for complete specifications including:
+
 - Color palettes and theming (Dawn/Midnight modes)
 - Typography, spacing, and component patterns
 - Sleep state animations and micro-interactions
 - Responsive layouts and accessibility guidelines
 
 ### Key Files
+
 ```
 src/
 ├── app/
@@ -59,12 +65,14 @@ docs/
 ## Implementation Notes
 
 ### Tailwind CSS 4 Integration
+
 - Uses **CSS-first configuration** with `@theme` directive instead of `tailwind.config.js`
 - Theme switching via `data-theme="midnight"` attribute
 - Sleep state animations implemented as utility classes
 - Custom design tokens defined in `@src/app/globals.css`
 
 ### Development Status
+
 - **MVP in development** targeting September 30, 2025
 - Currently in initial setup phase with design system established
 - Frontend dependencies planned but not yet installed
@@ -73,6 +81,7 @@ docs/
 - Analysis: OpenAI API integration
 
 ### Configuration Files
+
 - `next.config.ts` - Next.js with Turbopack configuration
 - `postcss.config.mjs` - PostCSS with Tailwind 4 support
 - `eslint.config.mjs` - ESLint 9 configuration

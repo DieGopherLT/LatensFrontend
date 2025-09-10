@@ -1,11 +1,13 @@
 # Latens Design System
-*Inspirado en Vercel, optimizado para expresividad controlada*
+
+_Inspirado en Vercel, optimizado para expresividad controlada_
 
 ---
 
 ## Filosofía de Diseño
 
 **Base Conservadora + Expresividad Rica = Credibilidad + Satisfacción**
+
 - Fondos y estructura proyectan seriedad técnica
 - Animaciones y micro-interacciones generan satisfacción
 - El "despertar" de proyectos es el momento de máxima expresividad
@@ -15,6 +17,7 @@
 ## Tipografía
 
 ### Jerarquía Principal
+
 - **H1**: Inter 32px, font-weight 700, line-height 1.2, letter-spacing -0.02em
 - **H2**: Inter 24px, font-weight 600, line-height 1.3, letter-spacing -0.01em
 - **H3**: Inter 20px, font-weight 600, line-height 1.4
@@ -23,6 +26,7 @@
 - **Small**: Inter 12px, font-weight 500, line-height 1.4
 
 ### Reglas Tipográficas
+
 - **Máximo 3 weights**: 400, 500, 600, 700
 - **Variable font preferred**: Inter Variable para performance
 - **Monospace para código**: Fira Code 14px, line-height 1.4
@@ -32,6 +36,7 @@
 ## Espaciado y Layout
 
 ### Sistema de Espaciado (8px base)
+
 ```
 4px  = 0.5 unit  (micro-spacing)
 8px  = 1 unit    (small)
@@ -43,12 +48,14 @@
 ```
 
 ### Grid y Contenedores
+
 - **Max-width principal**: 1200px
 - **Padding lateral**: 24px (mobile), 48px (desktop)
 - **Grid gaps**: 24px (cards), 16px (elementos internos)
 - **Sidebar width**: 280px (desktop)
 
 ### Jerarquía de Espacios
+
 - **Entre secciones**: 64px
 - **Entre cards**: 24px
 - **Dentro de cards**: 16px padding
@@ -60,24 +67,27 @@
 ## Colores y Estados
 
 ### Aplicación de Paleta
+
 - **Backgrounds**: Pure White (`#FFFFFF`) / Deep Night (`#0F172A`) como base
 - **Surface elements**: Morning Mist (`#F8FAFC`) / Slate Dark (`#1E293B`)
 - **Interactive elements**: Aurora Orange (`#FF6B35` / `#FF7A59`) para CTAs principales
 - **Secondary actions**: Dawn Blue (`#2E86AB`) / Cyber Blue (`#3B9ECD`)
 
 ### Estados de Interacción
-| Estado | Transformación | Duración |
-|--------|----------------|----------|
-| **Hover** | +10% brightness, scale(1.02) | 150ms |
-| **Active** | -5% brightness, scale(0.98) | 100ms |
-| **Focus** | Box-shadow Aurora Orange (`#FF6B35`) | 200ms |
-| **Disabled** | 50% opacity | 300ms |
+
+| Estado       | Transformación                       | Duración |
+| ------------ | ------------------------------------ | -------- |
+| **Hover**    | +10% brightness, scale(1.02)         | 150ms    |
+| **Active**   | -5% brightness, scale(0.98)          | 100ms    |
+| **Focus**    | Box-shadow Aurora Orange (`#FF6B35`) | 200ms    |
+| **Disabled** | 50% opacity                          | 300ms    |
 
 ---
 
 ## Componentes Base
 
 ### Cards
+
 ```
 Background: Morning Mist (#F8FAFC) / Slate Dark (#1E293B)
 Border-radius: 12px
@@ -88,6 +98,7 @@ Transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1)
 ```
 
 ### Botones
+
 ```
 Primary:
   Background: Aurora Orange (#FF6B35 / #FF7A59)
@@ -95,13 +106,13 @@ Primary:
   Padding: 12px 24px
   Border-radius: 8px
   Font-weight: 500
-  
+
 Secondary:
   Background: Dawn Blue (#2E86AB) / Cyber Blue (#3B9ECD)
   Color: White
   Padding: 12px 24px
   Border-radius: 8px
-  
+
 Ghost:
   Background: Transparent
   Border: 1px solid border-color
@@ -109,6 +120,7 @@ Ghost:
 ```
 
 ### Inputs
+
 ```
 Background: Pure White (#FFFFFF) / Deep Night (#0F172A)
 Border: 1px solid Soft Gray (#E2E8F0) / Border Gray (#334155)
@@ -122,12 +134,14 @@ Focus: Border Aurora Orange (#FF6B35), box-shadow glow
 ## Animaciones y Transiciones
 
 ### Timing Functions
+
 - **Estándar**: `cubic-bezier(0.4, 0, 0.2, 1)` - 300ms
 - **Entrada**: `cubic-bezier(0, 0, 0.2, 1)` - 200ms
 - **Salida**: `cubic-bezier(0.4, 0, 1, 1)` - 150ms
 - **Bouncy**: `cubic-bezier(0.68, -0.55, 0.265, 1.55)` - 400ms
 
 ### Micro-interacciones
+
 - **Button hover**: Scale 1.02, shadow elevation
 - **Card hover**: Lift 2px, shadow expand
 - **Input focus**: Border glow, slight scale
@@ -136,6 +150,7 @@ Focus: Border Aurora Orange (#FF6B35), box-shadow glow
 ### Proceso de "Despertar" (Signature Animation)
 
 #### Estado Inicial (Deep Sleep)
+
 ```
 Opacity: 0.5
 Scale: 0.92
@@ -144,6 +159,7 @@ Color: Deep Sleep color (#A855F7)
 ```
 
 #### Fase 1: Standard Sleep
+
 ```
 Opacity: 0.7
 Scale: 0.96
@@ -153,6 +169,7 @@ Duration: 800ms
 ```
 
 #### Fase 2: Light Sleep
+
 ```
 Opacity: 0.9
 Scale: 0.98
@@ -162,6 +179,7 @@ Duration: 600ms
 ```
 
 #### Fase 3: Ready to Resume (Light Sleep)
+
 ```
 Opacity: 1
 Scale: 1
@@ -172,6 +190,7 @@ Duration: 400ms
 ```
 
 #### Fase 4: Fully Ready
+
 ```
 Gentle pulse animation
 Scale: 1 → 1.02 → 1 (2s loop)
@@ -183,6 +202,7 @@ Glow fade out over 1s
 ## Layout Específicos
 
 ### Dashboard Principal
+
 ```
 Header: 80px height, sticky
 Sidebar: 280px width, slide-out mobile
@@ -192,6 +212,7 @@ Gap: 24px between project cards
 ```
 
 ### Project Card
+
 ```
 Width: 320px (desktop), 100% (mobile)
 Height: Auto (min 200px)
@@ -201,6 +222,7 @@ Actions: Bottom-aligned buttons
 ```
 
 ### Sleep Score Badge
+
 ```
 Position: Absolute top-right
 Size: 48px diameter
@@ -216,20 +238,23 @@ Animation: Gentle pulse for deep sleep
 ### State Visualization
 
 #### Light Theme (Dawn)
-| State | Color | Visual Effect | Animation |
-|--------|-------|---------------|-----------|
-| **Light Sleep (0-30)** | `#F59E0B` | No effects | Breathing (4s) |
-| **Standard Sleep (31-60)** | `#8B5CF6` | Light blur | Slow pulse (5s) |
-| **Deep Sleep (61-100)** | `#A855F7` | Moderate blur | Very slow pulse (6s) |
+
+| State                      | Color     | Visual Effect | Animation            |
+| -------------------------- | --------- | ------------- | -------------------- |
+| **Light Sleep (0-30)**     | `#F59E0B` | No effects    | Breathing (4s)       |
+| **Standard Sleep (31-60)** | `#8B5CF6` | Light blur    | Slow pulse (5s)      |
+| **Deep Sleep (61-100)**    | `#A855F7` | Moderate blur | Very slow pulse (6s) |
 
 #### Dark Theme (Midnight)
-| State | Color | Visual Effect | Animation |
-|--------|-------|---------------|-----------|
-| **Light Sleep (0-30)** | `#F97316` | No effects | Breathing (4s) |
-| **Standard Sleep (31-60)** | `#A855F7` | Light blur | Slow pulse (5s) |
-| **Deep Sleep (61-100)** | `#7C3AED` | Moderate blur | Very slow pulse (6s) |
+
+| State                      | Color     | Visual Effect | Animation            |
+| -------------------------- | --------- | ------------- | -------------------- |
+| **Light Sleep (0-30)**     | `#F97316` | No effects    | Breathing (4s)       |
+| **Standard Sleep (31-60)** | `#A855F7` | Light blur    | Slow pulse (5s)      |
+| **Deep Sleep (61-100)**    | `#7C3AED` | Moderate blur | Very slow pulse (6s) |
 
 ### Transiciones entre Estados
+
 - **Duración**: 1200ms
 - **Easing**: `cubic-bezier(0.25, 0.46, 0.45, 0.94)`
 - **Propiedades**: color, filter, box-shadow
@@ -240,12 +265,14 @@ Animation: Gentle pulse for deep sleep
 ## Iconografía
 
 ### Estilo de Íconos
+
 - **Librería**: Lucide React (24px base)
 - **Stroke-width**: 1.5px
 - **Estados**: Outline (inactivo), filled (activo)
 - **Animaciones**: Rotate, scale, path transitions
 
 ### Íconos Específicos
+
 - **Sleep**: Moon, ZZZ, Bed
 - **Awakening**: Sun, Eye, Sunrise
 - **Repository**: Folder, Code, Git-branch
@@ -263,6 +290,7 @@ Large: 1440px+
 ```
 
 ### Adaptaciones por Dispositivo
+
 - **Mobile**: Single column, bottom navigation
 - **Tablet**: 2-column grid, sidebar overlay
 - **Desktop**: 3-column grid, persistent sidebar
@@ -273,11 +301,13 @@ Large: 1440px+
 ## Performance Guidelines
 
 ### Animaciones
+
 - **Transform y opacity only** para 60fps garantizado
 - **Will-change** solo durante animaciones activas
 - **Reduced motion** query para accesibilidad
 
 ### Carga de Componentes
+
 - **Skeleton screens** durante análisis asíncrono
 - **Progressive enhancement** para efectos avanzados
 - **Lazy loading** para project cards fuera de viewport
@@ -287,16 +317,19 @@ Large: 1440px+
 ## Accesibilidad
 
 ### Contraste y Color
+
 - **Mínimo 4.5:1** para texto normal
 - **Mínimo 3:1** para elementos grandes
 - **Color-blind friendly** sleep score indicators
 
 ### Interacción
+
 - **Focus visible** en todos los elementos interactivos
 - **Skip links** para navegación por teclado
 - **ARIA labels** para sleep states
 
 ### Movimiento
+
 - **Prefers-reduced-motion** respetado
 - **Alternativas estáticas** para todas las animaciones
 - **Pausar animaciones** en hover/focus
@@ -306,11 +339,13 @@ Large: 1440px+
 ## Notas de Implementación
 
 ### CSS Architecture
+
 - **CSS Modules** o **Styled-components** para estilos
 - **CSS Custom Properties** para theming
 - **Container queries** para responsive components
 
 ### Estado de Carga
+
 - **Skeleton placeholders** con shimmer effect
 - **Progressive reveal** conforme completa análisis
 - **Error states** con retry actions claros

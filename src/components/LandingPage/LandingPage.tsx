@@ -1,9 +1,10 @@
 import LandingLayout from './LandingLayout';
-import HeroSection from './Sections/HeroSection';
+import CTASection from './Sections/CTASection';
 import FeaturesSection from './Sections/FeaturesSection';
+import HeroSection from './Sections/HeroSection';
 import HowItWorksSection from './Sections/HowItWorksSection';
 import SleepStatesSection from './Sections/SleepStatesSection';
-import CTASection from './Sections/CTASection';
+
 
 const LandingPage = () => {
   return (
