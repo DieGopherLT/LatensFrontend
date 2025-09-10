@@ -59,13 +59,13 @@ const SleepStatesSection = () => {
           <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6">
             Understanding Your{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
-              Project's Sleep Depth
+              Project&rsquo;s Sleep Depth
             </span>
           </h2>
           
           <p className="text-lg text-muted-foreground leading-relaxed">
             Every dormant project has a unique sleep pattern. Latens identifies the depth 
-            of your project's slumber to provide the most effective awakening strategy.
+            of your project&rsquo;s slumber to provide the most effective awakening strategy.
           </p>
         </div>
 
@@ -73,15 +73,16 @@ const SleepStatesSection = () => {
           {sleepStates.map((state, index) => (
             <div
               key={index}
-              className={`
-                bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8
-                hover:bg-card/70 transition-all duration-700 group hover:scale-105 hover:-translate-y-3
-                hover:shadow-2xl relative overflow-hidden interactive-glow
-                ${state.color === 'sleep-light' ? 'hover:shadow-sleep-light/20' : ''}
-                ${state.color === 'sleep-standard' ? 'hover:shadow-sleep-standard/20' : ''}
-                ${state.color === 'sleep-deep' ? 'hover:shadow-sleep-deep/20' : ''}
-              `}
-              style={{ animationDelay: `${index * 150}ms` }}
+              className={clsx(
+                "bg-card/50 backdrop-blur-sm border border-border/60 rounded-2xl p-8",
+                "hover:bg-card/70 transition-all duration-700 group hover:scale-105 hover:-translate-y-3",
+                "hover:shadow-2xl relative overflow-hidden interactive-glow animate-sleep-cascade",
+                {
+                  'stagger-100': index === 0,
+                  'stagger-200': index === 1,
+                  'stagger-300': index === 2,
+                }
+              )}
             >
               {/* Background animation */}
               <div className={`absolute inset-0 opacity-5 ${
@@ -95,11 +96,11 @@ const SleepStatesSection = () => {
               <div className="relative z-10">
                 {/* Icon */}
                 <div className={clsx(
-                  "flex items-center justify-center w-20 h-20 rounded-3xl mb-6 border transition-all duration-300",
+                  "flex items-center justify-center w-20 h-20 rounded-3xl mb-6 border-2 transition-all duration-300",
                   {
-                    'bg-sleep-light/10 text-sleep-light border-sleep-light/20 group-hover:bg-sleep-light/20 sleep-light': state.color === 'sleep-light',
-                    'bg-sleep-standard/10 text-sleep-standard border-sleep-standard/20 group-hover:bg-sleep-standard/20 sleep-standard': state.color === 'sleep-standard',
-                    'bg-sleep-deep/10 text-sleep-deep border-sleep-deep/20 group-hover:bg-sleep-deep/20 sleep-deep': state.color === 'sleep-deep',
+                    'bg-amber-500/10 text-amber-600 border-amber-500/40 group-hover:bg-amber-500/20': state.color === 'sleep-light',
+                    'bg-purple-500/10 text-purple-500 border-purple-500/40 group-hover:bg-purple-500/20': state.color === 'sleep-standard',
+                    'bg-violet-600/10 text-violet-600 border-violet-600/40 group-hover:bg-violet-600/20': state.color === 'sleep-deep',
                   }
                 )}>
                   {state.icon}
@@ -111,19 +112,19 @@ const SleepStatesSection = () => {
                     <h3 className={clsx(
                       "text-2xl font-bold",
                       {
-                        'text-sleep-light': state.color === 'sleep-light',
-                        'text-sleep-standard': state.color === 'sleep-standard',
-                        'text-sleep-deep': state.color === 'sleep-deep',
+                        'text-amber-600': state.color === 'sleep-light',
+                        'text-purple-500': state.color === 'sleep-standard',
+                        'text-violet-600': state.color === 'sleep-deep',
                       }
                     )}>
                       {state.name}
                     </h3>
                     <div className={clsx(
-                      "px-3 py-1 text-sm font-bold rounded-full border",
+                      "px-3 py-1 text-sm font-bold rounded-full border-2",
                       {
-                        'bg-sleep-light/10 text-sleep-light border-sleep-light/20': state.color === 'sleep-light',
-                        'bg-sleep-standard/10 text-sleep-standard border-sleep-standard/20': state.color === 'sleep-standard',
-                        'bg-sleep-deep/10 text-sleep-deep border-sleep-deep/20': state.color === 'sleep-deep',
+                        'bg-amber-500/10 text-amber-600 border-amber-500/40': state.color === 'sleep-light',
+                        'bg-purple-500/10 text-purple-500 border-purple-500/40': state.color === 'sleep-standard',
+                        'bg-violet-600/10 text-violet-600 border-violet-600/40': state.color === 'sleep-deep',
                       }
                     )}>
                       {state.range}
@@ -145,9 +146,9 @@ const SleepStatesSection = () => {
                         <div className={clsx(
                           "w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0",
                           {
-                            'bg-sleep-light': state.color === 'sleep-light',
-                            'bg-sleep-standard': state.color === 'sleep-standard',
-                            'bg-sleep-deep': state.color === 'sleep-deep',
+                            'bg-amber-600': state.color === 'sleep-light',
+                            'bg-purple-500': state.color === 'sleep-standard',
+                            'bg-violet-600': state.color === 'sleep-deep',
                           }
                         )} />
                         <span>{char}</span>
@@ -158,11 +159,11 @@ const SleepStatesSection = () => {
 
                 {/* Awakening strategy */}
                 <div className={clsx(
-                  "p-4 rounded-xl border",
+                  "p-4 rounded-xl border-2",
                   {
-                    'bg-sleep-light/5 border-sleep-light/10': state.color === 'sleep-light',
-                    'bg-sleep-standard/5 border-sleep-standard/10': state.color === 'sleep-standard',
-                    'bg-sleep-deep/5 border-sleep-deep/10': state.color === 'sleep-deep',
+                    'bg-amber-500/5 border-amber-500/30': state.color === 'sleep-light',
+                    'bg-purple-500/5 border-purple-500/30': state.color === 'sleep-standard',
+                    'bg-violet-600/5 border-violet-600/30': state.color === 'sleep-deep',
                   }
                 )}>
                   <h4 className="text-sm font-bold text-foreground mb-2 uppercase tracking-wide">
@@ -178,7 +179,7 @@ const SleepStatesSection = () => {
         </div>
 
         {/* Sleep Score Visualization */}
-        <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-3xl p-8 max-w-4xl mx-auto">
+        <div className="bg-card/50 backdrop-blur-sm border border-border/60 rounded-3xl p-8 max-w-4xl mx-auto">
           <div className="text-center mb-8">
             <h3 className="text-2xl font-bold text-foreground mb-4">
               Sleep Score Spectrum
@@ -190,14 +191,14 @@ const SleepStatesSection = () => {
 
           {/* Spectrum bar */}
           <div className="relative">
-            <div className="flex h-12 rounded-2xl overflow-hidden shadow-inner">
-              <div className="flex-1 bg-primary flex items-center justify-center text-white font-bold text-sm">
+            <div className="flex h-12 rounded-2xl overflow-hidden shadow-inner border-2 border-border/50">
+              <div className="flex-1 bg-amber-500/70 flex items-center justify-center text-white font-bold text-sm">
                 Light Sleep
               </div>
-              <div className="flex-1 bg-warning flex items-center justify-center text-white font-bold text-sm">
+              <div className="flex-1 bg-purple-500/70 flex items-center justify-center text-white font-bold text-sm">
                 Standard Sleep
               </div>
-              <div className="flex-1 bg-destructive flex items-center justify-center text-white font-bold text-sm">
+              <div className="flex-1 bg-violet-600/70 flex items-center justify-center text-white font-bold text-sm">
                 Deep Sleep
               </div>
             </div>
@@ -213,20 +214,20 @@ const SleepStatesSection = () => {
 
           {/* Example projects */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-            <div className="text-center p-4 bg-primary/5 rounded-xl border border-primary/10">
-              <div className="w-8 h-8 bg-primary rounded-full mx-auto mb-2" />
-              <div className="text-sm font-semibold text-foreground">Active Project</div>
-              <div className="text-xs text-muted-foreground">Score: 15</div>
+            <div className="text-center p-4 bg-amber-500/5 rounded-xl border-2 border-amber-500/30 animate-sleep-cascade stagger-100">
+              <div className="w-8 h-8 bg-amber-500 rounded-full mx-auto mb-2" />
+              <div className="text-sm font-semibold text-foreground">my-portfolio</div>
+              <div className="text-xs text-muted-foreground">Score: 15 • Last commit: 1 week ago</div>
             </div>
-            <div className="text-center p-4 bg-warning/5 rounded-xl border border-warning/10">
-              <div className="w-8 h-8 bg-warning rounded-full mx-auto mb-2" />
-              <div className="text-sm font-semibold text-foreground">Paused Project</div>
-              <div className="text-xs text-muted-foreground">Score: 45</div>
+            <div className="text-center p-4 bg-purple-500/5 rounded-xl border-2 border-purple-500/30 animate-sleep-cascade stagger-200">
+              <div className="w-8 h-8 bg-purple-500 rounded-full mx-auto mb-2" />
+              <div className="text-sm font-semibold text-foreground">expense-tracker</div>
+              <div className="text-xs text-muted-foreground">Score: 42 • Last commit: 6 weeks ago</div>
             </div>
-            <div className="text-center p-4 bg-destructive/5 rounded-xl border border-destructive/10">
-              <div className="w-8 h-8 bg-destructive rounded-full mx-auto mb-2" />
-              <div className="text-sm font-semibold text-foreground">Abandoned Project</div>
-              <div className="text-xs text-muted-foreground">Score: 85</div>
+            <div className="text-center p-4 bg-violet-600/5 rounded-xl border-2 border-violet-600/30 animate-sleep-cascade stagger-300">
+              <div className="w-8 h-8 bg-violet-600 rounded-full mx-auto mb-2" />
+              <div className="text-sm font-semibold text-foreground">crypto-dashboard</div>
+              <div className="text-xs text-muted-foreground">Score: 89 • Last commit: 8 months ago</div>
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import { Star, Play } from 'lucide-react';
+import { Star } from 'lucide-react';
 import GitHubAuthButton from '../Navigation/GitHubAuthButton';
 
 const CTASection = () => {
@@ -67,14 +67,10 @@ const CTASection = () => {
             </div>
 
             {/* Action buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-8">
+            <div className="flex items-center justify-center mb-8">
               <div className="interactive-glow rounded-lg">
                 <GitHubAuthButton size="lg" />
               </div>
-              <button className="btn-secondary px-8 py-3 text-base inline-flex items-center space-x-2 group hover:shadow-2xl hover:shadow-secondary/20 transition-all duration-300 shimmer-effect">
-                <Play className="w-5 h-5 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12" />
-                <span>Watch Demo</span>
-              </button>
             </div>
 
             {/* Trust indicators */}
@@ -109,8 +105,8 @@ const CTASection = () => {
                 ))}
               </div>
               <blockquote className="text-lg text-muted-foreground italic mb-4 leading-relaxed">
-                "Latens helped me revive a year-old project in just 20 minutes. 
-                I knew exactly where I left off and what to work on next."
+                &ldquo;Latens helped me revive a year-old project in just 20 minutes. 
+                I knew exactly where I left off and what to work on next.&rdquo;
               </blockquote>
               <div className="flex items-center justify-center space-x-3">
                 <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center">
