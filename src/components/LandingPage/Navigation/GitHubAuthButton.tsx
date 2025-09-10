@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { signIn } from 'next-auth/react';
 import { Github, Loader2 } from 'lucide-react';
 
 interface GitHubAuthButtonProps {
@@ -14,10 +15,14 @@ const GitHubAuthButton = ({ variant = 'primary', size = 'md' }: GitHubAuthButton
   const handleSignIn = async () => {
     setIsLoading(true);
     
-    setTimeout(() => {
+    try {
+      await signIn('github', { 
+        callbackUrl: '/dashboard' // Redirect to dashboard after successful login
+      });
+    } catch (error) {
+      console.error('Sign in error:', error);
       setIsLoading(false);
-      console.log('GitHub authentication will be implemented with Auth.js');
-    }, 1000);
+    }
   };
 
   const sizeClasses = {
