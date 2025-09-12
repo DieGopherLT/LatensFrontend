@@ -29,7 +29,7 @@ export default async function DashboardPage() {
               await signOut({ redirectTo: '/' });
             }}
           >
-            <button type="submit" className="btn-secondary px-6 py-2">
+            <button className="btn-secondary px-6 py-2" type="submit">
               Sign Out
             </button>
           </form>

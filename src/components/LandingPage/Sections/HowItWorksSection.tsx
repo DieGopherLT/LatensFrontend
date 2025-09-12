@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ArrowRight, BookOpen, Brain, Github, Zap } from 'lucide-react';
+import { BookOpen, Brain, Github, Zap } from 'lucide-react';
 
 const HowItWorksSection = () => {
   const steps = [
@@ -176,22 +176,7 @@ const HowItWorksSection = () => {
           </div>
         </div>
 
-        {/* Bottom CTA */}
-        <div className="text-center">
-          <div className="mx-auto max-w-2xl rounded-2xl border border-border/50 bg-card/50 p-8 backdrop-blur-sm">
-            <h3 className="mb-4 text-2xl font-bold text-foreground">
-              Ready to Awaken Your Projects?
-            </h3>
-            <p className="mb-6 leading-relaxed text-muted-foreground">
-              Start with a free analysis of your repository. No credit card required, just connect
-              your GitHub account and see the magic happen.
-            </p>
-            <button className="btn-primary group inline-flex items-center space-x-2 px-8 py-3 text-base">
-              <span>Analyze My Repository</span>
-              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-            </button>
-          </div>
-        </div>
+
       </div>
     </section>
   );

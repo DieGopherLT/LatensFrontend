@@ -1,4 +1,4 @@
-import { ArrowRight, BookOpen, Brain, FolderGit2, Shield, Target, Zap } from 'lucide-react';
+import { BookOpen, Brain, FolderGit2, Shield, Target, Zap } from 'lucide-react';
 
 const FeaturesSection = () => {
   const features = [
@@ -95,14 +95,7 @@ const FeaturesSection = () => {
           ))}
         </div>
 
-        {/* Bottom CTA */}
-        <div className="mt-16 text-center">
-          <p className="mb-6 text-muted-foreground">Ready to wake up your sleeping projects?</p>
-          <button className="btn-primary group inline-flex items-center space-x-2 px-8 py-3 text-base">
-            <span>Start Free Analysis</span>
-            <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-          </button>
-        </div>
+
       </div>
     </section>
   );

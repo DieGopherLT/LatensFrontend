@@ -2,6 +2,8 @@
 
 import { CheckCircle2, Shield, Users } from 'lucide-react';
 
+import GitHubAuthButton from '../Navigation/GitHubAuthButton';
+
 const HeroSection = () => {
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
@@ -62,6 +64,13 @@ const HeroSection = () => {
             </div>
           </div>
 
+          {/* Primary CTA */}
+          <div className="animate-sleep-awaken stagger-400 mb-12 flex items-center justify-center">
+            <div className="interactive-glow rounded-lg">
+              <GitHubAuthButton size="lg" />
+            </div>
+          </div>
+
           {/* Trust indicators */}
           <div className="flex flex-col items-center justify-center space-y-2 text-sm text-muted-foreground sm:flex-row sm:space-y-0 sm:space-x-8">
             <div className="flex items-center space-x-2">
@@ -80,15 +89,7 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 transform">
-        <div className="flex flex-col items-center space-y-2 text-muted-foreground">
-          <span className="text-sm">Discover More</span>
-          <div className="flex h-10 w-6 justify-center rounded-full border-2 border-current">
-            <div className="mt-2 h-3 w-1 animate-bounce rounded-full bg-current" />
-          </div>
-        </div>
-      </div>
+
     </section>
   );
 };

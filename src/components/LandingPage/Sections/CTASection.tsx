@@ -2,6 +2,8 @@ import { Star } from 'lucide-react';
 
 import GitHubAuthButton from '../Navigation/GitHubAuthButton';
 
+
+
 const CTASection = () => {
   return (
     <section className="relative overflow-hidden py-24">

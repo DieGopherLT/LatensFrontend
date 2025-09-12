@@ -68,24 +68,27 @@ export const authConfig: NextAuthConfig = {
       // All required data is available, proceed with backend sync
       try {
         const backendUrl = process.env.BACKEND_SERVER_URL;
-        console.log(`Syncing user data with backend at ${backendUrl}/auth/sync`);
+        const url = `${backendUrl}/api/v1/auth/sync`;
+        console.log(`Syncing user data with backend at ${url}`);
 
-        const response = await fetch(`${backendUrl}/auth/sync`, {
+        const request = await fetch(url, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            github_id: profile.id,
+            github_id: profile.id?.toString() || '',
             username: profile.login,
             email: profile.email || user.email,
+            name: profile.name,
             access_token: account.access_token,
             avatar_url: profile.avatar_url || user.image,
           }),
         });
+        const response = await request.json();
 
-        if (!response.ok) {
-          console.error('Failed to sync with backend:', response.status, response.statusText);
+        if (!request.ok) {
+          console.error('Failed to sync with backend:', request.status, { response });
           // We still allow sign in even if backend sync fails
         } else {
           console.log('Successfully synced with backend');
