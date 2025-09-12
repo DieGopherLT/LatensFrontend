@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { Github, Loader2 } from 'lucide-react';
+import { signIn, useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 interface GitHubAuthButtonProps {
   variant?: 'primary' | 'secondary';
@@ -10,14 +12,34 @@ interface GitHubAuthButtonProps {
 
 const GitHubAuthButton = ({ variant = 'primary', size = 'md' }: GitHubAuthButtonProps) => {
   const [isLoading, setIsLoading] = useState(false);
+  const { data: session } = useSession();
+  const router = useRouter();
 
   const handleSignIn = async () => {
+    if (session) {
+      // If already authenticated, go to success callback to sync with backend
+      router.push('/api/auth/callback/success');
+      return;
+    }
+
     setIsLoading(true);
     
-    setTimeout(() => {
+    try {
+      const result = await signIn('github', { 
+        redirect: false // We'll handle redirect manually
+      });
+      
+      if (result?.ok) {
+        // After successful sign in, redirect to our success callback
+        router.push('/api/auth/callback/success');
+      } else {
+        console.error('Authentication failed:', result?.error);
+        setIsLoading(false);
+      }
+    } catch (error) {
+      console.error('Authentication error:', error);
       setIsLoading(false);
-      console.log('GitHub authentication will be implemented with Auth.js');
-    }, 1000);
+    }
   };
 
   const sizeClasses = {
