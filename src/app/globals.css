@@ -21,9 +21,9 @@
   --color-success: #059669;
   --color-info: #0284c7;
 
-  --color-sleep-light: 245 158 11;
-  --color-sleep-standard: 139 92 246;
-  --color-sleep-deep: 168 85 247;
+  --color-sleep-light: #f59e0b;
+  --color-sleep-standard: #8b5cf6;
+  --color-sleep-deep: #a855f7;
 
   /* Typography */
   --font-sans: 'Inter Variable', 'Inter', system-ui, sans-serif;
@@ -49,9 +49,9 @@
   --color-success: #10b981;
   --color-info: #06b6d4;
 
-  --color-sleep-light: 249 115 22;
-  --color-sleep-standard: 168 85 247;
-  --color-sleep-deep: 124 58 237;
+  --color-sleep-light: #f97316;
+  --color-sleep-standard: #a855f7;
+  --color-sleep-deep: #7c3aed;
 }
 
 body {
@@ -85,93 +85,6 @@ body {
 
   .sleep-deep-decoration {
     animation: sleep-deep-float 6s ease-in-out infinite;
-  }
-
-  /* Sleep state colors - for content/UI elements (no animation) */
-  .sleep-light {
-    color: rgb(var(--color-sleep-light));
-  }
-
-  .sleep-standard {
-    color: rgb(var(--color-sleep-standard));
-  }
-
-  .sleep-deep {
-    color: rgb(var(--color-sleep-deep));
-  }
-
-  .bg-sleep-light {
-    background-color: rgb(var(--color-sleep-light));
-  }
-
-  .bg-sleep-standard {
-    background-color: rgb(var(--color-sleep-standard));
-  }
-
-  .bg-sleep-deep {
-    background-color: rgb(var(--color-sleep-deep));
-  }
-
-  .border-sleep-light {
-    border-color: rgb(var(--color-sleep-light));
-  }
-
-  .border-sleep-standard {
-    border-color: rgb(var(--color-sleep-standard));
-  }
-
-  .border-sleep-deep {
-    border-color: rgb(var(--color-sleep-deep));
-  }
-
-  /* Sleep state backgrounds with opacity */
-  .bg-sleep-light-10 {
-    background-color: rgb(var(--color-sleep-light) / 0.1);
-  }
-
-  .bg-sleep-standard-10 {
-    background-color: rgb(var(--color-sleep-standard) / 0.1);
-  }
-
-  .bg-sleep-deep-10 {
-    background-color: rgb(var(--color-sleep-deep) / 0.1);
-  }
-
-  .bg-sleep-light-5 {
-    background-color: rgb(var(--color-sleep-light) / 0.05);
-  }
-
-  .bg-sleep-standard-5 {
-    background-color: rgb(var(--color-sleep-standard) / 0.05);
-  }
-
-  .bg-sleep-deep-5 {
-    background-color: rgb(var(--color-sleep-deep) / 0.05);
-  }
-
-  /* Sleep state borders with opacity */
-  .border-sleep-light-20 {
-    border-color: rgb(var(--color-sleep-light) / 0.2);
-  }
-
-  .border-sleep-standard-20 {
-    border-color: rgb(var(--color-sleep-standard) / 0.2);
-  }
-
-  .border-sleep-deep-20 {
-    border-color: rgb(var(--color-sleep-deep) / 0.2);
-  }
-
-  .border-sleep-light-30 {
-    border-color: rgb(var(--color-sleep-light) / 0.3);
-  }
-
-  .border-sleep-standard-30 {
-    border-color: rgb(var(--color-sleep-standard) / 0.3);
-  }
-
-  .border-sleep-deep-30 {
-    border-color: rgb(var(--color-sleep-deep) / 0.3);
   }
 
   /* Enhanced microinteractions */

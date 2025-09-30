@@ -6,7 +6,7 @@ import GitHubAuthButton from '../navigation/GitHubAuthButton';
 
 const CTASection = () => {
   return (
-    <section className="relative overflow-hidden py-24">
+    <section className="relative overflow-hidden py-12 md:py-16 lg:py-20">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-accent/10 to-secondary/10" />
 

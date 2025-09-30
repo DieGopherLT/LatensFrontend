@@ -38,7 +38,7 @@ const HowItWorksSection = () => {
   ];
 
   return (
-    <section className="py-24" id="how-it-works">
+    <section className="py-12 md:py-16 lg:py-20" id="how-it-works">
       <div className="container mx-auto px-6">
         <div className="mx-auto mb-16 max-w-3xl text-center">
           <div className="mb-6 inline-flex items-center rounded-full border border-accent/20 bg-accent/10 px-4 py-2 text-sm text-accent">

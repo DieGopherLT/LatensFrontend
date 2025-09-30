@@ -23,7 +23,7 @@ const HeroSection = () => {
         />
       </div>
 
-      <div className="relative z-10 container mx-auto px-6 py-20">
+      <div className="relative z-10 container mx-auto px-6 py-12 md:py-16 lg:py-20">
         <div className="mx-auto max-w-4xl text-center">
           {/* Badge */}
           <div className="animate-sleep-awaken mb-8 inline-flex items-center rounded-full border border-border/50 bg-muted/50 px-4 py-2 text-sm text-muted-foreground">
