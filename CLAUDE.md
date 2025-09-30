@@ -19,6 +19,9 @@ The tool performs "Latens Recovery" to help projects remember their state and "L
 ## Development Commands
 
 ```bash
+# Install dependencies
+pnpm add <dependencies>
+
 # Development with Turbopack
 npm run dev
 
@@ -60,9 +63,63 @@ docs/
 └── stack.md            # Frontend dependencies and integration plan
 ```
 
-- On development ongoing, when performing important architecture updates, update this document as well.
+### How to structure the src directory
+
+- Identify domains by grouping elements together that are related to an entity or feature.
+- Identified domains will have their own directory at `src/modules/<domain>/`.
+  - Each domain will be auto-contained, all the files related to it will live under its directory.
+  - Each domain can have different types of files that are grouped in these directories:
+    - Components, reusable pieces of UI.
+    - Hooks, to extract logic from components.
+    - Styles, CSS modules if needed.
+    - Pages, the components bounded to Next.js router.
+    - Layouts, the components that will work as Next.js layouts inside a set of routes.
+    - Utils, pure functions with an input and an output, no side effects.
+    - Constants, hardcoded values that are read-only.
+    - Contexts, in case the component three of a domain turns deep.
+  - All the elements a domain/module exposes goes into an index.ts file.
+- Shared logic will live in a `src/modules/core` domain with general purpose components, hooks and helpers.
 
 ## Implementation Notes
+
+### Code generation guidelines
+
+#### Imports
+
+They go in this order:
+
+- React dependencies
+- External dependencies
+- Components
+- Hooks (including contexts)
+- Constants
+- Utils
+- Styles
+
+#### Components structure
+
+Outside of the component:
+
+- Interface of props (if applies).
+  - Sort props so primitive types are first, then objects, then functions.
+- Functions or constants that are not tied to component life cycle.
+
+Inside the component:
+
+- Props destructuring
+- Custom hooks declaration
+- Local state variables declaration
+- Local useMemo/useCallback declarations
+- useEffects Calls
+- Non-memoized variables and functions
+- Guard clauses for conditional rendering
+- JSX
+
+#### Content rendering
+
+- Avoid using ternaries, always use `&&` and handle all edge cases.
+- If looped content is 40+ lines of code, extract it into a component.
+- If a component should not be rendered, return null.
 
 ### Tailwind CSS 4 Integration
 
@@ -73,7 +130,6 @@ docs/
 
 ### Development Status
 
-- **MVP in development** targeting September 30, 2025
 - Currently in initial setup phase with design system established
 - Frontend dependencies planned but not yet installed
 - Backend planned: Go + Fiber + MongoDB
@@ -82,7 +138,7 @@ docs/
 
 ### Configuration Files
 
-- `next.config.ts` - Next.js with Turbopack configuration
-- `postcss.config.mjs` - PostCSS with Tailwind 4 support
-- `eslint.config.mjs` - ESLint 9 configuration
-- Tailwind configuration via `@theme` in `globals.css`
+- `@next.config.ts` - Next.js with Turbopack configuration
+- `@postcss.config.mjs` - PostCSS with Tailwind 4 support
+- `@eslint.config.mjs` - ESLint 9 configuration
+- Tailwind configuration via `@theme` in `@globals.css`

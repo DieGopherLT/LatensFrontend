@@ -12,7 +12,7 @@ declare module 'next-auth' {
       username: string;
       avatarUrl: string;
     };
-    accessToken: string;
+    backendToken?: string;
   }
 
   interface Profile {
@@ -28,6 +28,7 @@ declare module 'next-auth' {
     email?: string | null;
     name?: string | null;
     image?: string | null;
+    backendToken?: string;
   }
 
   interface Account {
@@ -39,9 +40,10 @@ declare module 'next-auth' {
 
 declare module 'next-auth/jwt' {
   interface JWT {
-    accessToken?: string;
     githubId?: string;
     username?: string;
     avatarUrl?: string;
+    backendToken?: string;
+    githubAccessToken?: string;
   }
 }

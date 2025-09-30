@@ -1,40 +1,134 @@
-import { auth } from '@/auth';
+'use client';
+
+import RepositoryGrid from '@/components/Dashboard/RepositoryGrid';
+import SyncLoader from '@/components/Dashboard/SyncLoader';
+import { useRepositories, useSyncRepositories } from '@/services/repositories';
+import { GitHubRepository } from '@/types/repository';
+import { useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
+import { useEffect } from 'react';
 
-export default async function DashboardPage() {
-  const session = await auth();
+export default function DashboardPage() {
+  const { data: session, status } = useSession();
 
-  if (!session) {
+  // TanStack Query hooks
+  const { data: repositories = [], isLoading, error, refetch } = useRepositories();
+  const syncMutation = useSyncRepositories();
+
+  // Redirect if not authenticated
+  if (status === 'unauthenticated') {
     redirect('/');
   }
 
-  return (
-    <div className="min-h-screen bg-background p-8">
-      <div className="mx-auto max-w-4xl">
-        <h1 className="mb-6 text-3xl font-bold text-primary">Dashboard - Debug Session</h1>
+  // Auto-sync if no repositories found
+  useEffect(() => {
+    if (
+      !isLoading &&
+      repositories.length === 0 &&
+      !error &&
+      !syncMutation.isPending &&
+      !syncMutation.isError
+    ) {
+      syncMutation.mutate();
+    }
+  }, [isLoading, repositories.length, error, syncMutation]);
 
-        <div className="bg-surface rounded-lg p-6 shadow-lg">
-          <h2 className="mb-4 text-xl font-semibold text-primary">Session Information:</h2>
+  // Listen for sync events from layout
+  useEffect(() => {
+    const handleSyncRequested = () => {
+      syncMutation.mutate();
+    };
 
-          <pre className="overflow-auto rounded bg-background p-4 font-mono text-sm">
-            {JSON.stringify(session, null, 2)}
-          </pre>
-        </div>
+    window.addEventListener('repositories-sync-requested', handleSyncRequested);
+    return () => {
+      window.removeEventListener('repositories-sync-requested', handleSyncRequested);
+    };
+  }, [syncMutation]);
 
-        <div className="mt-6">
-          <form
-            action={async () => {
-              'use server';
-              const { signOut } = await import('@/auth');
-              await signOut({ redirectTo: '/' });
-            }}
-          >
-            <button className="btn-secondary px-6 py-2" type="submit">
-              Sign Out
-            </button>
-          </form>
-        </div>
+  const handleRepositoryClick = (repository: GitHubRepository) => {
+    // TODO: Navigate to repository detail page
+    console.log('Repository clicked:', repository.name);
+  };
+
+  const handleRetry = () => {
+    if (error) {
+      refetch();
+    }
+  };
+
+  if (status === 'loading') {
+    return (
+      <div className="flex min-h-96 items-center justify-center">
+        <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-primary"></div>
       </div>
-    </div>
+    );
+  }
+
+  return (
+    <>
+      <div className="space-y-6">
+        {/* Header */}
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-foreground">Dashboard</h1>
+            <p className="mt-1 text-muted-foreground">
+              Welcome back, {session?.user?.name || session?.user?.username}
+            </p>
+          </div>
+
+          {/* Repository count */}
+          {repositories.length > 0 && (
+            <div className="text-right">
+              <div className="text-2xl font-bold text-foreground">{repositories.length}</div>
+              <div className="text-sm text-muted-foreground">
+                {repositories.length === 1 ? 'repository' : 'repositories'}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Error state */}
+        {(error || syncMutation.isError) && (
+          <div className="rounded-lg border border-destructive/20 bg-destructive/10 p-4">
+            <p className="text-destructive">
+              {error instanceof Error && error.message}
+              {!(error instanceof Error) &&
+                syncMutation.error instanceof Error &&
+                syncMutation.error.message}
+              {!(error instanceof Error) &&
+                !(syncMutation.error instanceof Error) &&
+                'Failed to load repositories'}
+            </p>
+            <button
+              className="mt-2 text-sm text-destructive hover:underline disabled:opacity-50"
+              disabled={isLoading || syncMutation.isPending}
+              onClick={() => {
+                syncMutation.reset();
+                if (error) {
+                  refetch();
+                } else {
+                  syncMutation.mutate();
+                }
+              }}
+            >
+              {isLoading || syncMutation.isPending ? 'Loading...' : 'Try again'}
+            </button>
+          </div>
+        )}
+
+        {/* Repository Grid */}
+        <RepositoryGrid
+          isLoading={isLoading}
+          repositories={repositories}
+          onRepositoryClick={handleRepositoryClick}
+        />
+      </div>
+
+      {/* Sync Loader */}
+      <SyncLoader
+        isVisible={syncMutation.isPending}
+        message={syncMutation.variables ? 'Syncing repositories from GitHub...' : undefined}
+      />
+    </>
   );
 }
