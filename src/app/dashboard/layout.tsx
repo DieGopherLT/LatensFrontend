@@ -1,8 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
+import clsx from 'clsx';
 
 import { DashboardNavbar, DashboardSidebar } from '@/modules/dashboard';
 import { useAuthToken } from '@/modules/auth';
@@ -13,27 +14,8 @@ interface DashboardLayoutProps {
 
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const { data: session, status } = useSession();
-  const { isAuthenticated } = useAuthToken(); // Initialize auth token management
+  const { isAuthenticated } = useAuthToken();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [isMobile, setIsMobile] = useState(false);
-
-  // Handle responsive behavior
-  useEffect(() => {
-    const checkIsMobile = () => {
-      const mobile = window.innerWidth < 1024; // lg breakpoint
-      setIsMobile(mobile);
-
-      // Auto-collapse sidebar on mobile
-      if (mobile) {
-        setIsSidebarOpen(false);
-      }
-    };
-
-    checkIsMobile();
-    window.addEventListener('resize', checkIsMobile);
-
-    return () => window.removeEventListener('resize', checkIsMobile);
-  }, []);
 
   // Redirect if not authenticated
   if (status === 'loading') {
@@ -53,9 +35,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   };
 
   const handleCloseSidebar = () => {
-    if (isMobile) {
-      setIsSidebarOpen(false);
-    }
+    setIsSidebarOpen(false);
   };
 
   const handleSyncRepositories = () => {
@@ -75,13 +55,23 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
       />
 
       {/* Sidebar */}
-      <DashboardSidebar isMobile={isMobile} isOpen={isSidebarOpen} onClose={handleCloseSidebar} />
+      <DashboardSidebar
+        isOpen={isSidebarOpen}
+        isSyncing={false}
+        onClose={handleCloseSidebar}
+        onSyncRepositories={handleSyncRepositories}
+      />
 
       {/* Main Content */}
       <main
-        className={`pt-20 transition-all duration-300 ${
-          isMobile ? 'ml-0' : isSidebarOpen ? 'ml-80' : 'ml-16'
-        }`}
+        className={clsx(
+          'pt-20 transition-all duration-300',
+          // Mobile: no margin
+          'ml-0',
+          // Desktop: adjust margin based on sidebar state
+          'lg:ml-16',
+          isSidebarOpen && 'lg:ml-80'
+        )}
       >
         <div className="p-6">{children}</div>
       </main>

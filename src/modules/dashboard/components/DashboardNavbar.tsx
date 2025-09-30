@@ -43,9 +43,9 @@ const DashboardNavbar = ({
 
         {/* Right side - Actions and User Menu */}
         <div className="flex items-center space-x-4">
-          {/* Sync Repositories Button */}
+          {/* Sync Repositories Button - Hidden on mobile */}
           <button
-            className="btn-secondary flex items-center space-x-2 px-4 py-2 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+            className="btn-secondary hidden lg:flex items-center space-x-2 px-4 py-2 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={isSyncing}
             onClick={onSyncRepositories}
           >

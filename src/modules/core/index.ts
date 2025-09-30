@@ -1,3 +1,6 @@
+// Components
+export { Portal } from './components/Portal';
+
 // Providers
 export { QueryProvider } from './components/providers/QueryProvider';
 

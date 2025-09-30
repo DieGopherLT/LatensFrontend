@@ -89,12 +89,15 @@ Each domain may contain these subdirectories (create only if needed):
 2. Each domain MUST have an `index.ts` file that exports all public elements
 3. Components in subdirectories (e.g., `components/navigation/`) don't need their own index files
 4. Use `.ts` extension for non-JSX files, `.tsx` for files with JSX
+5. **One component per file**: A single file cannot contain multiple components. If a file has multiple components, convert it to a directory with separate files for each component
 
 **Example Structure:**
 ```
 src/modules/
 ├── core/
-│   ├── components/providers/
+│   ├── components/
+│   │   ├── Portal.tsx
+│   │   └── providers/
 │   ├── services/http/
 │   └── index.ts
 ├── auth/
@@ -105,6 +108,12 @@ src/modules/
 │   └── index.ts
 └── dashboard/
     ├── components/
+    │   ├── DashboardNavbar.tsx
+    │   └── DashboardSidebar/
+    │       ├── index.tsx           # Main component
+    │       └── SidebarContent.tsx   # Sub-component
+    ├── constants/
+    │   └── navigation.ts
     ├── services/
     ├── types/
     └── index.ts

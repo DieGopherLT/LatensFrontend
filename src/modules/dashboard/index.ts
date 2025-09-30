@@ -7,6 +7,13 @@ export { default as RepositoryGrid } from './components/RepositoryGrid';
 export { default as SyncButton } from './components/SyncButton';
 export { default as SyncLoader } from './components/SyncLoader';
 
+// Constants
+export {
+  MAIN_NAVIGATION_ITEMS,
+  SECONDARY_NAVIGATION_ITEMS,
+  type NavigationItem,
+} from './constants/navigation';
+
 // Services
 export {
   repositoryApi,
