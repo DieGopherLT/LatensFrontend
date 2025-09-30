@@ -1,6 +1,6 @@
 'use client';
 
-import { GitHubRepository } from '@/types/repository';
+import { GitHubRepository } from '../types/repository';
 import RepositoryCard from './RepositoryCard';
 
 interface RepositoryGridProps {

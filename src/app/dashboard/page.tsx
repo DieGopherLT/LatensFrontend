@@ -1,12 +1,16 @@
 'use client';
 
-import RepositoryGrid from '@/components/Dashboard/RepositoryGrid';
-import SyncLoader from '@/components/Dashboard/SyncLoader';
-import { useRepositories, useSyncRepositories } from '@/services/repositories';
-import { GitHubRepository } from '@/types/repository';
+import { useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
-import { useEffect } from 'react';
+
+import {
+  RepositoryGrid,
+  SyncLoader,
+  useRepositories,
+  useSyncRepositories,
+  type GitHubRepository,
+} from '@/modules/dashboard';
 
 export default function DashboardPage() {
   const { data: session, status } = useSession();

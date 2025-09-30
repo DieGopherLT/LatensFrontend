@@ -1,11 +1,11 @@
 'use client';
 
-import DashboardNavbar from '@/components/Dashboard/DashboardNavbar';
-import DashboardSidebar from '@/components/Dashboard/DashboardSidebar';
-import { useAuthToken } from '@/hooks/useAuthToken';
+import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
-import { useEffect, useState } from 'react';
+
+import { DashboardNavbar, DashboardSidebar } from '@/modules/dashboard';
+import { useAuthToken } from '@/modules/auth';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;

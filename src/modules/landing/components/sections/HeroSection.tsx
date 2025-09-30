@@ -2,7 +2,7 @@
 
 import { CheckCircle2, Shield, Users } from 'lucide-react';
 
-import GitHubAuthButton from '../Navigation/GitHubAuthButton';
+import GitHubAuthButton from '../navigation/GitHubAuthButton';
 
 const HeroSection = () => {
   return (

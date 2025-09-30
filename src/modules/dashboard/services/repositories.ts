@@ -1,25 +1,26 @@
-import { GitHubRepository } from '@/types/repository';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import apiClient from './http/client';
+
+import { httpClient } from '@/modules/core';
+import { GitHubRepository } from '../types/repository';
 
 // API Functions (called by TanStack Query)
 // Note: These functions will automatically use the Bearer token set by useAuthToken hook
 export const repositoryApi = {
   // Fetch all repositories
   getAll: async (): Promise<GitHubRepository[]> => {
-    const response = await apiClient.get('/api/v1/repos');
+    const response = await httpClient.get('/api/v1/repos');
     return response.data.repos;
   },
 
   // Sync repositories from GitHub
   sync: async (): Promise<GitHubRepository[]> => {
-    const response = await apiClient.post('/api/v1/repos/sync');
+    const response = await httpClient.post('/api/v1/repos/sync');
     return response.data.repos;
   },
 
   // Get a single repository by ID
   getById: async (id: string): Promise<GitHubRepository> => {
-    const response = await apiClient.get(`/api/v1/repos/${id}`);
+    const response = await httpClient.get(`/api/v1/repos/${id}`);
     return response.data;
   },
 };

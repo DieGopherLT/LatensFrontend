@@ -12,7 +12,7 @@ import {
   AlertTriangle,
   Archive
 } from 'lucide-react';
-import { GitHubRepository } from '@/types/repository';
+import { GitHubRepository } from '../types/repository';
 
 interface RepositoryCardProps {
   repository: GitHubRepository;
@@ -65,12 +65,12 @@ const RepositoryCard = ({ repository, onCardClick }: RepositoryCardProps) => {
       {/* Status indicators */}
       <div className="absolute top-4 right-4 flex items-center space-x-2">
         {repository.is_private ? (
-          <Lock className="h-4 w-4 text-muted-foreground" title="Private repository" />
+          <Lock className="h-4 w-4 text-muted-foreground" />
         ) : (
-          <Unlock className="h-4 w-4 text-muted-foreground" title="Public repository" />
+          <Unlock className="h-4 w-4 text-muted-foreground" />
         )}
         {repository.is_fork && (
-          <GitFork className="h-4 w-4 text-muted-foreground" title="Forked repository" />
+          <GitFork className="h-4 w-4 text-muted-foreground" />
         )}
         {getStatusIcon()}
       </div>

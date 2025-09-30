@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { getSession } from 'next-auth/react';
 
-export const apiClient = axios.create({
+export const httpClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:4000',
   timeout: 30000,
   headers: {
@@ -10,7 +10,7 @@ export const apiClient = axios.create({
 });
 
 // Request interceptor to add auth token dynamically
-apiClient.interceptors.request.use(
+httpClient.interceptors.request.use(
   async (config) => {
     const session = await getSession();
 
@@ -25,7 +25,7 @@ apiClient.interceptors.request.use(
 
 // Request interceptor for debugging (development only)
 if (process.env.NODE_ENV === 'development') {
-  apiClient.interceptors.request.use(
+  httpClient.interceptors.request.use(
     (config) => {
       console.log(`API Request: ${config.method?.toUpperCase()} ${config.url}`, {
         baseURL: config.baseURL,
@@ -43,7 +43,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Response interceptor for error handling
-apiClient.interceptors.response.use(
+httpClient.interceptors.response.use(
   (response) => {
     if (process.env.NODE_ENV === 'development') {
       console.log(`API Response: ${response.status}`, response.data);
@@ -76,5 +76,3 @@ apiClient.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-
-export default apiClient;

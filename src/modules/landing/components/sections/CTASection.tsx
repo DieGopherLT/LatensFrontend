@@ -1,6 +1,6 @@
 import { Star } from 'lucide-react';
 
-import GitHubAuthButton from '../Navigation/GitHubAuthButton';
+import GitHubAuthButton from '../navigation/GitHubAuthButton';
 
 
 
