@@ -65,20 +65,50 @@ docs/
 
 ### How to structure the src directory
 
-- Identify domains by grouping elements together that are related to an entity or feature.
-- Identified domains will have their own directory at `src/modules/<domain>/`.
-  - Each domain will be auto-contained, all the files related to it will live under its directory.
-  - Each domain can have different types of files that are grouped in these directories:
-    - Components, reusable pieces of UI.
-    - Hooks, to extract logic from components.
-    - Styles, CSS modules if needed.
-    - Pages, the components bounded to Next.js router.
-    - Layouts, the components that will work as Next.js layouts inside a set of routes.
-    - Utils, pure functions with an input and an output, no side effects.
-    - Constants, hardcoded values that are read-only.
-    - Contexts, in case the component three of a domain turns deep.
-  - All the elements a domain/module exposes goes into an index.ts file.
-- Shared logic will live in a `src/modules/core` domain with general purpose components, hooks and helpers.
+**Domain Organization:**
+- Group related functionality into domains at `src/modules/<domain>/`
+- Each domain is self-contained with all related files inside its directory
+- Use `src/modules/core` for shared logic (general-purpose components, hooks, utilities)
+
+**Directory Structure per Domain:**
+
+Each domain may contain these subdirectories (create only if needed):
+- `components/` - Reusable UI pieces
+- `hooks/` - Custom React hooks for logic extraction
+- `services/` - API calls, data fetching, business logic
+- `types/` - TypeScript interfaces and types
+- `pages/` - Next.js route-bound components
+- `layouts/` - Next.js layout components
+- `utils/` - Pure functions (input → output, no side effects)
+- `constants/` - Read-only hardcoded values
+- `contexts/` - React Context providers (if component tree is deep)
+- `styles/` - CSS modules (if needed)
+
+**Important Rules:**
+1. Only create directories when you have files to put in them (no empty directories)
+2. Each domain MUST have an `index.ts` file that exports all public elements
+3. Components in subdirectories (e.g., `components/navigation/`) don't need their own index files
+4. Use `.ts` extension for non-JSX files, `.tsx` for files with JSX
+
+**Example Structure:**
+```
+src/modules/
+├── core/
+│   ├── components/providers/
+│   ├── services/http/
+│   └── index.ts
+├── auth/
+│   ├── components/
+│   ├── hooks/
+│   ├── types/
+│   ├── auth.config.ts
+│   └── index.ts
+└── dashboard/
+    ├── components/
+    ├── services/
+    ├── types/
+    └── index.ts
+```
 
 ## Implementation Notes
 
