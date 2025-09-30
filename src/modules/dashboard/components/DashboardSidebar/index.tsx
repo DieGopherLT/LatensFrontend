@@ -1,14 +1,10 @@
 'use client';
 
-import React from 'react';
+import { Portal } from '@/modules/core';
 import clsx from 'clsx';
 import { usePathname } from 'next/navigation';
-
-import { Portal } from '@/modules/core';
-import {
-  MAIN_NAVIGATION_ITEMS,
-  SECONDARY_NAVIGATION_ITEMS,
-} from '../../constants/navigation';
+import React from 'react';
+import { MAIN_NAVIGATION_ITEMS, SECONDARY_NAVIGATION_ITEMS } from '../../constants/navigation';
 import SidebarContent from './SidebarContent';
 
 interface DashboardSidebarProps {
@@ -98,7 +94,8 @@ const DashboardSidebar = ({
         className={clsx(
           'fixed top-20 left-0 z-30 h-[calc(100vh-5rem)]',
           'border-r border-border bg-card',
-          'transition-all duration-300',
+          'overflow-hidden',
+          'transition-all duration-500',
           'hidden lg:block',
           isOpen ? 'w-80' : 'w-16'
         )}

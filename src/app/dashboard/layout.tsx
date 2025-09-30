@@ -1,12 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useAuthToken } from '@/modules/auth';
+import { DashboardNavbar, DashboardSidebar } from '@/modules/dashboard';
+import clsx from 'clsx';
 import { useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
-import clsx from 'clsx';
+import { useState } from 'react';
 
-import { DashboardNavbar, DashboardSidebar } from '@/modules/dashboard';
-import { useAuthToken } from '@/modules/auth';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -65,7 +65,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
       {/* Main Content */}
       <main
         className={clsx(
-          'pt-20 transition-all duration-300',
+          'pt-20 transition-all duration-500',
           // Mobile: no margin
           'ml-0',
           // Desktop: adjust margin based on sidebar state

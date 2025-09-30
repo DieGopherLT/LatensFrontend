@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 import { Moon, RefreshCw, Sun } from 'lucide-react';
 import Link from 'next/link';
-
 import type { NavigationItem } from '../../constants/navigation';
+
 
 interface SidebarContentProps {
   navigationItems: NavigationItem[];
@@ -46,25 +46,34 @@ const SidebarContent = ({
               <Link
                 key={item.name}
                 className={clsx(
-                  'flex items-center space-x-3 rounded-lg px-3 py-2',
-                  'text-sm font-medium transition-all duration-200',
+                  'grid items-center gap-3 rounded-lg py-2',
+                  isCollapsed ? 'px-0' : 'px-3',
+                  'text-sm font-medium transition-all duration-500',
                   isActive
                     ? 'bg-primary/10 text-primary'
                     : 'text-muted-foreground hover:bg-muted hover:text-foreground',
-                  isCollapsed && 'justify-center'
+                  isCollapsed
+                    ? 'grid-cols-1 grid-rows-1 place-items-center'
+                    : 'grid-cols-[auto_1fr]'
                 )}
                 href={item.href}
                 title={isCollapsed ? item.name : undefined}
                 onClick={onLinkClick}
               >
                 <Icon className="h-5 w-5 flex-shrink-0" />
-                {!isCollapsed && <span>{item.name}</span>}
+                <span
+                  className={clsx(
+                    'overflow-hidden whitespace-nowrap transition-all duration-500',
+                    isCollapsed && 'hidden'
+                  )}
+                >
+                  {item.name}
+                </span>
               </Link>
             );
           })}
         </div>
       </nav>
-
       {/* Action Buttons (Mobile only) */}
       {isMobile && (
         <div className="border-t border-border p-4">
@@ -87,7 +96,7 @@ const SidebarContent = ({
             {/* Theme Toggle Button */}
             <button
               className={clsx(
-                'flex w-full items-center space-x-3 rounded-lg px-3 py-2',
+                'flex items-center space-x-3 rounded-lg px-3 py-2',
                 'text-sm font-medium transition-all duration-200',
                 'text-muted-foreground hover:bg-muted hover:text-foreground'
               )}
@@ -99,10 +108,36 @@ const SidebarContent = ({
           </div>
         </div>
       )}
-
       {/* Secondary Navigation */}
       <div className="border-t border-border p-4">
         <div className="space-y-2">
+          {/* Theme Toggle for Desktop */}
+          {!isMobile && (
+            <button
+              className={clsx(
+                'grid items-center gap-3 rounded-lg py-2',
+                isCollapsed ? 'px-0' : 'px-3',
+                'text-sm font-medium transition-all duration-500',
+                'text-muted-foreground hover:bg-muted hover:text-foreground',
+                isCollapsed
+                  ? 'w-full grid-cols-1 grid-rows-1 place-items-center'
+                  : 'grid-cols-[auto_1fr]'
+              )}
+              title={isCollapsed ? themeLabel : undefined}
+              onClick={onThemeToggle}
+            >
+              <ThemeIcon className="h-5 w-5 flex-shrink-0" />
+              <span
+                className={clsx(
+                  'overflow-hidden whitespace-nowrap transition-all duration-500',
+                  isCollapsed && 'hidden'
+                )}
+              >
+                {themeLabel}
+              </span>
+            </button>
+          )}
+
           {secondaryItems.map((item) => {
             const Icon = item.icon;
             const isActive = !item.external && isActiveLink(item.href);
@@ -112,10 +147,13 @@ const SidebarContent = ({
                 <a
                   key={item.name}
                   className={clsx(
-                    'flex items-center space-x-3 rounded-lg px-3 py-2',
-                    'text-sm font-medium transition-all duration-200',
+                    'grid items-center gap-3 rounded-lg py-2',
+                    isCollapsed ? 'px-0' : 'px-3',
+                    'text-sm font-medium transition-all duration-500',
                     'text-muted-foreground hover:bg-muted hover:text-foreground',
-                    isCollapsed && 'justify-center'
+                    isCollapsed
+                      ? 'grid-cols-1 place-items-center'
+                      : 'grid-cols-[auto_1fr] items-center'
                   )}
                   href={item.href}
                   rel="noopener noreferrer"
@@ -124,7 +162,14 @@ const SidebarContent = ({
                   onClick={onLinkClick}
                 >
                   <Icon className="h-5 w-5 flex-shrink-0" />
-                  {!isCollapsed && <span>{item.name}</span>}
+                  <span
+                    className={clsx(
+                      'overflow-hidden whitespace-nowrap transition-all duration-500',
+                      isCollapsed && 'hidden'
+                    )}
+                  >
+                    {item.name}
+                  </span>
                 </a>
               );
             }
@@ -133,39 +178,32 @@ const SidebarContent = ({
               <Link
                 key={item.name}
                 className={clsx(
-                  'flex items-center space-x-3 rounded-lg px-3 py-2',
-                  'text-sm font-medium transition-all duration-200',
+                  'grid items-center gap-3 rounded-lg py-2',
+                  isCollapsed ? 'px-0' : 'px-3',
+                  'text-sm font-medium transition-all duration-500',
                   isActive
                     ? 'bg-primary/10 text-primary'
                     : 'text-muted-foreground hover:bg-muted hover:text-foreground',
-                  isCollapsed && 'justify-center'
+                  isCollapsed
+                    ? 'grid-cols-1 place-items-center'
+                    : 'grid-cols-[auto_1fr] items-center'
                 )}
                 href={item.href}
                 title={isCollapsed ? item.name : undefined}
                 onClick={onLinkClick}
               >
                 <Icon className="h-5 w-5 flex-shrink-0" />
-                {!isCollapsed && <span>{item.name}</span>}
+                <span
+                  className={clsx(
+                    'overflow-hidden whitespace-nowrap transition-all duration-500',
+                    isCollapsed && 'hidden'
+                  )}
+                >
+                  {item.name}
+                </span>
               </Link>
             );
           })}
-
-          {/* Theme Toggle for Desktop */}
-          {!isMobile && (
-            <button
-              className={clsx(
-                'flex w-full items-center space-x-3 rounded-lg px-3 py-2',
-                'text-sm font-medium transition-all duration-200',
-                'text-muted-foreground hover:bg-muted hover:text-foreground',
-                isCollapsed && 'justify-center'
-              )}
-              title={isCollapsed ? themeLabel : undefined}
-              onClick={onThemeToggle}
-            >
-              <ThemeIcon className="h-5 w-5 flex-shrink-0" />
-              {!isCollapsed && <span>{themeLabel}</span>}
-            </button>
-          )}
         </div>
       </div>
     </div>
