@@ -1,7 +1,9 @@
 import clsx from 'clsx';
 import { Moon, RefreshCw, Sun } from 'lucide-react';
-import Link from 'next/link';
 import type { NavigationItem } from '../../constants/navigation';
+import MobileActionButton from './MobileActionButton';
+import SidebarButton from './SidebarButton';
+import SidebarItem from './SidebarItem';
 
 
 interface SidebarContentProps {
@@ -38,40 +40,17 @@ const SidebarContent = ({
       {/* Main Navigation */}
       <nav className="flex-1 p-4">
         <div className="space-y-2">
-          {navigationItems.map((item) => {
-            const Icon = item.icon;
-            const isActive = isActiveLink(item.href, item.exact);
-
-            return (
-              <Link
-                key={item.name}
-                className={clsx(
-                  'grid items-center gap-3 rounded-lg py-2',
-                  isCollapsed ? 'px-0' : 'px-3',
-                  'text-sm font-medium transition-all duration-500',
-                  isActive
-                    ? 'bg-primary/10 text-primary'
-                    : 'text-muted-foreground hover:bg-muted hover:text-foreground',
-                  isCollapsed
-                    ? 'grid-cols-1 grid-rows-1 place-items-center'
-                    : 'grid-cols-[auto_1fr]'
-                )}
-                href={item.href}
-                title={isCollapsed ? item.name : undefined}
-                onClick={onLinkClick}
-              >
-                <Icon className="h-5 w-5 flex-shrink-0" />
-                <span
-                  className={clsx(
-                    'overflow-hidden whitespace-nowrap transition-all duration-500',
-                    isCollapsed && 'hidden'
-                  )}
-                >
-                  {item.name}
-                </span>
-              </Link>
-            );
-          })}
+          {navigationItems.map((item) => (
+            <SidebarItem
+              key={item.name}
+              href={item.href}
+              icon={item.icon}
+              isActive={isActiveLink(item.href, item.exact)}
+              isCollapsed={isCollapsed}
+              name={item.name}
+              onClick={onLinkClick}
+            />
+          ))}
         </div>
       </nav>
       {/* Action Buttons (Mobile only) */}
@@ -79,32 +58,16 @@ const SidebarContent = ({
         <div className="border-t border-border p-4">
           <div className="space-y-2">
             {/* Sync Repositories Button */}
-            <button
-              className={clsx(
-                'flex w-full items-center space-x-3 rounded-lg px-3 py-2',
-                'text-sm font-medium transition-all duration-200',
-                'text-muted-foreground hover:bg-muted hover:text-foreground',
-                'disabled:cursor-not-allowed disabled:opacity-50'
-              )}
-              disabled={isSyncing}
-              onClick={onSyncRepositories}
-            >
+            <MobileActionButton disabled={isSyncing} onClick={onSyncRepositories}>
               <RefreshCw className={clsx('h-5 w-5 flex-shrink-0', isSyncing && 'animate-spin')} />
               <span>{isSyncing ? 'Syncing...' : 'Sync Repos'}</span>
-            </button>
+            </MobileActionButton>
 
             {/* Theme Toggle Button */}
-            <button
-              className={clsx(
-                'flex items-center space-x-3 rounded-lg px-3 py-2',
-                'text-sm font-medium transition-all duration-200',
-                'text-muted-foreground hover:bg-muted hover:text-foreground'
-              )}
-              onClick={onThemeToggle}
-            >
+            <MobileActionButton onClick={onThemeToggle}>
               <ThemeIcon className="h-5 w-5 flex-shrink-0" />
               <span>{themeLabel}</span>
-            </button>
+            </MobileActionButton>
           </div>
         </div>
       )}
@@ -113,97 +76,26 @@ const SidebarContent = ({
         <div className="space-y-2">
           {/* Theme Toggle for Desktop */}
           {!isMobile && (
-            <button
-              className={clsx(
-                'grid items-center gap-3 rounded-lg py-2',
-                isCollapsed ? 'px-0' : 'px-3',
-                'text-sm font-medium transition-all duration-500',
-                'text-muted-foreground hover:bg-muted hover:text-foreground',
-                isCollapsed
-                  ? 'w-full grid-cols-1 grid-rows-1 place-items-center'
-                  : 'grid-cols-[auto_1fr]'
-              )}
-              title={isCollapsed ? themeLabel : undefined}
+            <SidebarButton
+              icon={ThemeIcon}
+              isCollapsed={isCollapsed}
+              label={themeLabel}
               onClick={onThemeToggle}
-            >
-              <ThemeIcon className="h-5 w-5 flex-shrink-0" />
-              <span
-                className={clsx(
-                  'overflow-hidden whitespace-nowrap transition-all duration-500',
-                  isCollapsed && 'hidden'
-                )}
-              >
-                {themeLabel}
-              </span>
-            </button>
+            />
           )}
 
-          {secondaryItems.map((item) => {
-            const Icon = item.icon;
-            const isActive = !item.external && isActiveLink(item.href);
-
-            if (item.external) {
-              return (
-                <a
-                  key={item.name}
-                  className={clsx(
-                    'grid items-center gap-3 rounded-lg py-2',
-                    isCollapsed ? 'px-0' : 'px-3',
-                    'text-sm font-medium transition-all duration-500',
-                    'text-muted-foreground hover:bg-muted hover:text-foreground',
-                    isCollapsed
-                      ? 'grid-cols-1 place-items-center'
-                      : 'grid-cols-[auto_1fr] items-center'
-                  )}
-                  href={item.href}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  title={isCollapsed ? item.name : undefined}
-                  onClick={onLinkClick}
-                >
-                  <Icon className="h-5 w-5 flex-shrink-0" />
-                  <span
-                    className={clsx(
-                      'overflow-hidden whitespace-nowrap transition-all duration-500',
-                      isCollapsed && 'hidden'
-                    )}
-                  >
-                    {item.name}
-                  </span>
-                </a>
-              );
-            }
-
-            return (
-              <Link
-                key={item.name}
-                className={clsx(
-                  'grid items-center gap-3 rounded-lg py-2',
-                  isCollapsed ? 'px-0' : 'px-3',
-                  'text-sm font-medium transition-all duration-500',
-                  isActive
-                    ? 'bg-primary/10 text-primary'
-                    : 'text-muted-foreground hover:bg-muted hover:text-foreground',
-                  isCollapsed
-                    ? 'grid-cols-1 place-items-center'
-                    : 'grid-cols-[auto_1fr] items-center'
-                )}
-                href={item.href}
-                title={isCollapsed ? item.name : undefined}
-                onClick={onLinkClick}
-              >
-                <Icon className="h-5 w-5 flex-shrink-0" />
-                <span
-                  className={clsx(
-                    'overflow-hidden whitespace-nowrap transition-all duration-500',
-                    isCollapsed && 'hidden'
-                  )}
-                >
-                  {item.name}
-                </span>
-              </Link>
-            );
-          })}
+          {secondaryItems.map((item) => (
+            <SidebarItem
+              key={item.name}
+              href={item.href}
+              icon={item.icon}
+              isActive={!item.external && isActiveLink(item.href)}
+              isCollapsed={isCollapsed}
+              isExternal={item.external}
+              name={item.name}
+              onClick={onLinkClick}
+            />
+          ))}
         </div>
       </div>
     </div>
