@@ -48,8 +48,8 @@ const Header = () => {
             {navLinks.map(({ href, label }) => (
               <a
                 key={href}
-                href={href}
                 className="font-medium text-muted-foreground transition-colors duration-200 hover:text-foreground"
+                href={href}
               >
                 {label}
               </a>
@@ -65,20 +65,20 @@ const Header = () => {
           <div className="flex items-center space-x-3 md:hidden">
             <ThemeToggle />
             <button
-              onClick={toggleMenu}
-              className="p-2 text-muted-foreground transition-colors hover:text-foreground"
               aria-label="Toggle menu"
+              className="p-2 text-muted-foreground transition-colors hover:text-foreground"
+              onClick={toggleMenu}
             >
               <svg
                 className={`h-6 w-6 transform transition-transform duration-200 ${
                   isMenuOpen ? 'rotate-90' : ''
                 }`}
                 fill="none"
+                stroke="currentColor"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
                 viewBox="0 0 24 24"
-                stroke="currentColor"
               >
                 {isMenuOpen ? (
                   <path d="M6 18L18 6M6 6l12 12" />
@@ -97,9 +97,9 @@ const Header = () => {
               {navLinks.map(({ href, label }) => (
                 <a
                   key={href}
+                  className="px-2 py-1 font-medium text-muted-foreground transition-colors duration-200 hover:text-foreground"
                   href={href}
                   onClick={() => setIsMenuOpen(false)}
-                  className="px-2 py-1 font-medium text-muted-foreground transition-colors duration-200 hover:text-foreground"
                 >
                   {label}
                 </a>

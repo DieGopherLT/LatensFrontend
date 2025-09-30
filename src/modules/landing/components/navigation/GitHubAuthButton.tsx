@@ -35,10 +35,10 @@ const GitHubAuthButton = ({ variant = 'primary', size = 'md' }: GitHubAuthButton
 
   return (
     <button
-      onClick={handleSignIn}
-      disabled={isLoading}
-      className={` ${buttonClasses} ${sizeClasses[size]} group inline-flex items-center space-x-2 transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50`}
       aria-label="Sign in with GitHub"
+      className={` ${buttonClasses} ${sizeClasses[size]} group inline-flex items-center space-x-2 transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50`}
+      disabled={isLoading}
+      onClick={handleSignIn}
     >
       {isLoading ? (
         <Loader2 className="h-5 w-5 animate-spin" />

@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { Session } from 'next-auth';
 import { Menu, RefreshCw } from 'lucide-react';
 import UserMenu from './UserMenu';
@@ -15,7 +14,6 @@ interface DashboardNavbarProps {
 
 const DashboardNavbar = ({
   session,
-  isSidebarOpen,
   onToggleSidebar,
   onSyncRepositories,
   isSyncing = false,
@@ -27,9 +25,9 @@ const DashboardNavbar = ({
         <div className="flex items-center space-x-4">
           {/* Sidebar Toggle Button */}
           <button
-            onClick={onToggleSidebar}
-            className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             aria-label="Toggle sidebar"
+            className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+            onClick={onToggleSidebar}
           >
             <Menu className="h-5 w-5" />
           </button>
@@ -47,9 +45,9 @@ const DashboardNavbar = ({
         <div className="flex items-center space-x-4">
           {/* Sync Repositories Button */}
           <button
-            onClick={onSyncRepositories}
-            disabled={isSyncing}
             className="btn-secondary flex items-center space-x-2 px-4 py-2 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={isSyncing}
+            onClick={onSyncRepositories}
           >
             <RefreshCw className={`h-4 w-4 ${isSyncing ? 'animate-spin' : ''}`} />
             <span className="hidden sm:inline">

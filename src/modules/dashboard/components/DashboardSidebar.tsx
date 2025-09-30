@@ -10,7 +10,8 @@ import {
   Archive,
   Star,
   Clock,
-  Github
+  Github,
+  type LucideIcon
 } from 'lucide-react';
 
 interface DashboardSidebarProps {
@@ -96,11 +97,11 @@ const DashboardSidebar = ({ isOpen, isMobile, onClose }: DashboardSidebarProps) 
         {/* Sidebar */}
         <aside className="fixed left-0 top-20 z-50 h-[calc(100vh-5rem)] w-80 bg-card border-r border-border shadow-lg animate-slide-up">
           <SidebarContent
+            isActiveLink={isActiveLink}
+            isCollapsed={false}
             navigationItems={navigationItems}
             secondaryItems={secondaryItems}
-            isActiveLink={isActiveLink}
             onLinkClick={handleLinkClick}
-            isCollapsed={false}
           />
         </aside>
       </>
@@ -115,11 +116,11 @@ const DashboardSidebar = ({ isOpen, isMobile, onClose }: DashboardSidebarProps) 
       }`}
     >
       <SidebarContent
+        isActiveLink={isActiveLink}
+        isCollapsed={!isOpen}
         navigationItems={navigationItems}
         secondaryItems={secondaryItems}
-        isActiveLink={isActiveLink}
         onLinkClick={handleLinkClick}
-        isCollapsed={!isOpen}
       />
     </aside>
   );
@@ -129,13 +130,13 @@ interface SidebarContentProps {
   navigationItems: Array<{
     name: string;
     href: string;
-    icon: any;
+    icon: LucideIcon;
     exact?: boolean;
   }>;
   secondaryItems: Array<{
     name: string;
     href: string;
-    icon: any;
+    icon: LucideIcon;
     external?: boolean;
   }>;
   isActiveLink: (href: string, exact?: boolean) => boolean;
@@ -162,14 +163,14 @@ const SidebarContent = ({
             return (
               <Link
                 key={item.name}
-                href={item.href}
-                onClick={onLinkClick}
                 className={`flex items-center space-x-3 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 ${
                   isActive
                     ? 'bg-primary/10 text-primary'
                     : 'text-muted-foreground hover:bg-muted hover:text-foreground'
                 } ${isCollapsed ? 'justify-center' : ''}`}
+                href={item.href}
                 title={isCollapsed ? item.name : undefined}
+                onClick={onLinkClick}
               >
                 <Icon className="h-5 w-5 flex-shrink-0" />
                 {!isCollapsed && <span>{item.name}</span>}
@@ -190,14 +191,14 @@ const SidebarContent = ({
               return (
                 <a
                   key={item.name}
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={onLinkClick}
                   className={`flex items-center space-x-3 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 text-muted-foreground hover:bg-muted hover:text-foreground ${
                     isCollapsed ? 'justify-center' : ''
                   }`}
+                  href={item.href}
+                  rel="noopener noreferrer"
+                  target="_blank"
                   title={isCollapsed ? item.name : undefined}
+                  onClick={onLinkClick}
                 >
                   <Icon className="h-5 w-5 flex-shrink-0" />
                   {!isCollapsed && <span>{item.name}</span>}
@@ -208,14 +209,14 @@ const SidebarContent = ({
             return (
               <Link
                 key={item.name}
-                href={item.href}
-                onClick={onLinkClick}
                 className={`flex items-center space-x-3 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 ${
                   isActive
                     ? 'bg-primary/10 text-primary'
                     : 'text-muted-foreground hover:bg-muted hover:text-foreground'
                 } ${isCollapsed ? 'justify-center' : ''}`}
+                href={item.href}
                 title={isCollapsed ? item.name : undefined}
+                onClick={onLinkClick}
               >
                 <Icon className="h-5 w-5 flex-shrink-0" />
                 {!isCollapsed && <span>{item.name}</span>}

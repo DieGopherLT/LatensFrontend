@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Session } from 'next-auth';
 import { signOut } from 'next-auth/react';
+import Image from 'next/image';
 import { LogOut, Settings, User, ChevronDown } from 'lucide-react';
 
 interface UserMenuProps {
@@ -31,18 +32,20 @@ const UserMenu = ({ session }: UserMenuProps) => {
   };
 
   return (
-    <div className="relative" ref={menuRef}>
+    <div ref={menuRef} className="relative">
       {/* Avatar Button */}
       <button
-        onClick={() => setIsOpen(!isOpen)}
         className="flex items-center space-x-2 rounded-lg p-2 transition-colors hover:bg-muted"
+        onClick={() => setIsOpen(!isOpen)}
       >
         {/* Avatar Image */}
         <div className="relative">
-          <img
-            src={session.user.avatarUrl}
+          <Image
             alt={session.user.name || session.user.username}
             className="h-8 w-8 rounded-full border-2 border-border"
+            height={32}
+            src={session.user.avatarUrl}
+            width={32}
           />
           <div className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-background bg-success" />
         </div>
@@ -62,10 +65,12 @@ const UserMenu = ({ session }: UserMenuProps) => {
           {/* User Info */}
           <div className="border-b border-border p-4">
             <div className="flex items-center space-x-3">
-              <img
-                src={session.user.avatarUrl}
+              <Image
                 alt={session.user.name || session.user.username}
                 className="h-10 w-10 rounded-full border-2 border-border"
+                height={40}
+                src={session.user.avatarUrl}
+                width={40}
               />
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-foreground truncate">
@@ -86,22 +91,22 @@ const UserMenu = ({ session }: UserMenuProps) => {
           {/* Menu Items */}
           <div className="p-2">
             <button
+              className="flex w-full items-center space-x-3 rounded-md px-3 py-2 text-sm transition-colors hover:bg-muted"
               onClick={() => {
                 setIsOpen(false);
                 // TODO: Navigate to profile page
               }}
-              className="flex w-full items-center space-x-3 rounded-md px-3 py-2 text-sm transition-colors hover:bg-muted"
             >
               <User className="h-4 w-4 text-muted-foreground" />
               <span>Profile</span>
             </button>
 
             <button
+              className="flex w-full items-center space-x-3 rounded-md px-3 py-2 text-sm transition-colors hover:bg-muted"
               onClick={() => {
                 setIsOpen(false);
                 // TODO: Navigate to settings page
               }}
-              className="flex w-full items-center space-x-3 rounded-md px-3 py-2 text-sm transition-colors hover:bg-muted"
             >
               <Settings className="h-4 w-4 text-muted-foreground" />
               <span>Settings</span>
@@ -110,8 +115,8 @@ const UserMenu = ({ session }: UserMenuProps) => {
             <hr className="my-2 border-border" />
 
             <button
-              onClick={handleSignOut}
               className="flex w-full items-center space-x-3 rounded-md px-3 py-2 text-sm text-destructive transition-colors hover:bg-destructive/10"
+              onClick={handleSignOut}
             >
               <LogOut className="h-4 w-4" />
               <span>Sign out</span>

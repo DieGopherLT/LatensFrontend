@@ -54,12 +54,6 @@ export default function DashboardPage() {
     console.log('Repository clicked:', repository.name);
   };
 
-  const handleRetry = () => {
-    if (error) {
-      refetch();
-    }
-  };
-
   if (status === 'loading') {
     return (
       <div className="flex min-h-96 items-center justify-center">

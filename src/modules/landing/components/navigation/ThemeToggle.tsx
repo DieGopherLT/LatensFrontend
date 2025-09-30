@@ -34,10 +34,10 @@ const ThemeToggle = () => {
 
   return (
     <button
-      onClick={toggleTheme}
-      className="group rounded-lg bg-muted p-2 text-muted-foreground transition-all duration-200 hover:bg-muted/80 hover:text-foreground"
       aria-label={`Switch to ${theme === 'dawn' ? 'midnight' : 'dawn'} theme`}
+      className="group rounded-lg bg-muted p-2 text-muted-foreground transition-all duration-200 hover:bg-muted/80 hover:text-foreground"
       title={`Switch to ${theme === 'dawn' ? 'midnight' : 'dawn'} theme`}
+      onClick={toggleTheme}
     >
       {theme === 'dawn' ? (
         <Sun className="h-5 w-5 transform transition-transform duration-300 group-hover:rotate-180" />

@@ -6,7 +6,6 @@ import {
   Lock,
   Unlock,
   GitFork,
-  Star,
   GitBranch,
   FileText,
   AlertTriangle,
@@ -53,7 +52,6 @@ const RepositoryCard = ({ repository, onCardClick }: RepositoryCardProps) => {
 
   return (
     <div
-      onClick={handleCardClick}
       className={`
         group relative overflow-hidden rounded-xl border border-border bg-card p-6
         transition-all duration-300 hover:border-primary/20 hover:shadow-lg hover:-translate-y-1
@@ -61,6 +59,7 @@ const RepositoryCard = ({ repository, onCardClick }: RepositoryCardProps) => {
         ${repository.is_archived ? 'opacity-75' : ''}
         ${repository.is_disabled ? 'opacity-60' : ''}
       `}
+      onClick={handleCardClick}
     >
       {/* Status indicators */}
       <div className="absolute top-4 right-4 flex items-center space-x-2">
@@ -77,9 +76,9 @@ const RepositoryCard = ({ repository, onCardClick }: RepositoryCardProps) => {
 
       {/* External link button */}
       <button
-        onClick={handleExternalLinkClick}
         className="absolute top-4 right-12 opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded hover:bg-muted"
         title="Open in GitHub"
+        onClick={handleExternalLinkClick}
       >
         <ExternalLink className="h-4 w-4 text-muted-foreground hover:text-foreground" />
       </button>

@@ -2,6 +2,7 @@
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { AxiosError } from 'axios';
 import { useState } from 'react';
 
 interface QueryProviderProps {
@@ -18,13 +19,17 @@ export const QueryProvider = ({ children }: QueryProviderProps) => {
             // above 0 to avoid refetching immediately on the client
             staleTime: 60 * 1000, // 1 minute
             gcTime: 10 * 60 * 1000, // 10 minutes (formerly cacheTime)
-            retry: (failureCount, error: any) => {
-              // Don't retry on 4xx errors except 408, 429
-              if (error?.response?.status >= 400 && error?.response?.status < 500) {
-                if (error?.response?.status === 408 || error?.response?.status === 429) {
-                  return failureCount < 2;
+            retry: (failureCount, error: Error) => {
+              // Check if error is an Axios error with response status
+              if (error instanceof AxiosError && error.response?.status) {
+                const status = error.response.status;
+                // Don't retry on 4xx errors except 408, 429
+                if (status >= 400 && status < 500) {
+                  if (status === 408 || status === 429) {
+                    return failureCount < 2;
+                  }
+                  return false;
                 }
-                return false;
               }
               // Retry up to 3 times for other errors
               return failureCount < 3;
@@ -32,10 +37,14 @@ export const QueryProvider = ({ children }: QueryProviderProps) => {
             refetchOnWindowFocus: false, // Disable auto-refetch on window focus
           },
           mutations: {
-            retry: (failureCount, error: any) => {
-              // Don't retry mutations on 4xx errors
-              if (error?.response?.status >= 400 && error?.response?.status < 500) {
-                return false;
+            retry: (failureCount, error: Error) => {
+              // Check if error is an Axios error with response status
+              if (error instanceof AxiosError && error.response?.status) {
+                const status = error.response.status;
+                // Don't retry mutations on 4xx errors
+                if (status >= 400 && status < 500) {
+                  return false;
+                }
               }
               // Retry up to 2 times for server errors
               return failureCount < 2;

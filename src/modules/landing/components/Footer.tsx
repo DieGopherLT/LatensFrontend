@@ -44,9 +44,9 @@ const Footer = () => {
 
             <div className="flex items-center space-x-4">
               <a
-                href="https://github.com/latens"
-                className="group interactive-glow rounded-lg bg-muted p-2 text-muted-foreground transition-all duration-300 hover:scale-110 hover:rotate-6 hover:bg-muted/80 hover:text-foreground hover:shadow-lg hover:shadow-primary/20"
                 aria-label="GitHub"
+                className="group interactive-glow rounded-lg bg-muted p-2 text-muted-foreground transition-all duration-300 hover:scale-110 hover:rotate-6 hover:bg-muted/80 hover:text-foreground hover:shadow-lg hover:shadow-primary/20"
+                href="https://github.com/latens"
               >
                 <Github className="h-5 w-5 transition-all duration-300 group-hover:scale-110" />
               </a>
@@ -70,8 +70,8 @@ const Footer = () => {
                 {footerLinks.product.map((link) => (
                   <li key={link.name}>
                     <a
-                      href={link.href}
                       className="text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground"
+                      href={link.href}
                     >
                       {link.name}
                     </a>
@@ -88,10 +88,10 @@ const Footer = () => {
                 {footerLinks.resources.map((link) => (
                   <li key={link.name}>
                     <a
-                      href={link.href}
                       className="text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground"
-                      target={link.href.startsWith('http') ? '_blank' : undefined}
+                      href={link.href}
                       rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                      target={link.href.startsWith('http') ? '_blank' : undefined}
                     >
                       {link.name}
                     </a>
@@ -108,8 +108,8 @@ const Footer = () => {
                 {footerLinks.company.map((link) => (
                   <li key={link.name}>
                     <a
-                      href={link.href}
                       className="text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground"
+                      href={link.href}
                     >
                       {link.name}
                     </a>

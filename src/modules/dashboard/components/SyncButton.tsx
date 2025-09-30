@@ -61,8 +61,6 @@ const SyncButton = ({
 
   return (
     <button
-      onClick={onSync}
-      disabled={isSyncing}
       className={clsx(
         getVariantClasses(),
         getSizeClasses(),
@@ -71,7 +69,9 @@ const SyncButton = ({
         'transition-all duration-200',
         className
       )}
+      disabled={isSyncing}
       title={isSyncing ? 'Syncing repositories...' : 'Sync repositories from GitHub'}
+      onClick={onSync}
     >
       <RefreshCw className={clsx(getIconSize(), { 'animate-spin': isSyncing })} />
       {showText && (
