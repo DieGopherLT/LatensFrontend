@@ -1,53 +1,7 @@
 import clsx from 'clsx';
-import { Bed, Moon, Sun } from 'lucide-react';
-
+import { sleepStates } from '../../constants/features';
 
 const SleepStatesSection = () => {
-  const sleepStates = [
-    {
-      name: 'Light Sleep',
-      range: '0-30',
-      color: 'sleep-light',
-      description: 'Recent active development with regular commits and activity.',
-      characteristics: [
-        'Last commit within 1-2 weeks',
-        'Active issue discussions',
-        'Recent PR activity',
-        'Dependencies up to date',
-      ],
-      awakening: 'Quick refresh - review recent changes and continue development.',
-      icon: <Sun className="h-12 w-12" />,
-    },
-    {
-      name: 'Standard Sleep',
-      range: '31-60',
-      color: 'sleep-standard',
-      description: 'Moderate pause in development with some dormancy indicators.',
-      characteristics: [
-        'Last commit 3-8 weeks ago',
-        'Some stale issues or PRs',
-        'Minor dependency drift',
-        'Partial context loss',
-      ],
-      awakening: 'Context recovery - analyze recent state and prioritize next steps.',
-      icon: <Moon className="h-12 w-12" />,
-    },
-    {
-      name: 'Deep Sleep',
-      range: '61-100',
-      color: 'sleep-deep',
-      description: 'Extended dormancy requiring comprehensive awakening process.',
-      characteristics: [
-        'Last commit 2+ months ago',
-        'Stale dependencies & security alerts',
-        'Forgotten architectural decisions',
-        'Significant context reconstruction needed',
-      ],
-      awakening: 'Full recovery - comprehensive analysis and gradual reengagement.',
-      icon: <Bed className="h-12 w-12" />,
-    },
-  ];
-
   return (
     <section className="bg-muted/30 py-12 md:py-16 lg:py-20" id="sleep-states">
       <div className="container mx-auto px-6">
@@ -105,11 +59,11 @@ const SleepStatesSection = () => {
                   className={clsx(
                     'mb-6 flex h-20 w-20 items-center justify-center rounded-3xl border-2 transition-all duration-300',
                     {
-                      'border-sleep-light/[30%] bg-sleep-light/[10%] sleep-light group-hover:bg-sleep-light/[20%]':
+                      'sleep-light border-sleep-light/[30%] bg-sleep-light/[10%] group-hover:bg-sleep-light/[20%]':
                         state.color === 'sleep-light',
-                      'border-sleep-standard/[30%] bg-sleep-standard/[10%] sleep-standard group-hover:bg-sleep-standard/[20%]':
+                      'sleep-standard border-sleep-standard/[30%] bg-sleep-standard/[10%] group-hover:bg-sleep-standard/[20%]':
                         state.color === 'sleep-standard',
-                      'border-sleep-deep/[30%] bg-sleep-deep/[10%] sleep-deep group-hover:bg-sleep-deep/[20%]':
+                      'sleep-deep border-sleep-deep/[30%] bg-sleep-deep/[10%] group-hover:bg-sleep-deep/[20%]':
                         state.color === 'sleep-deep',
                     }
                   )}
@@ -131,11 +85,11 @@ const SleepStatesSection = () => {
                     </h3>
                     <div
                       className={clsx('rounded-full border-2 px-3 py-1 text-sm font-bold', {
-                        'border-sleep-light/[30%] bg-sleep-light/[10%] sleep-light':
+                        'sleep-light border-sleep-light/[30%] bg-sleep-light/[10%]':
                           state.color === 'sleep-light',
-                        'border-sleep-standard/[30%] bg-sleep-standard/[10%] sleep-standard':
+                        'sleep-standard border-sleep-standard/[30%] bg-sleep-standard/[10%]':
                           state.color === 'sleep-standard',
-                        'border-sleep-deep/[30%] bg-sleep-deep/[10%] sleep-deep':
+                        'sleep-deep border-sleep-deep/[30%] bg-sleep-deep/[10%]':
                           state.color === 'sleep-deep',
                       })}
                     >

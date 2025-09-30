@@ -30,7 +30,7 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'border-b border-border bg-background/80 backdrop-blur-md' : 'bg-transparent'
+        isScrolled || isMenuOpen ? 'border-b border-border bg-background/80 backdrop-blur-md' : 'bg-transparent'
       }`}
     >
       <div className="container mx-auto px-6 py-4">
@@ -92,7 +92,7 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="mt-4 border-t border-border pb-4 md:hidden">
+          <div className="mt-4 border-t border-border bg-background/95 pb-4 backdrop-blur-sm md:hidden">
             <nav className="flex flex-col space-y-4 pt-4">
               {navLinks.map(({ href, label }) => (
                 <a

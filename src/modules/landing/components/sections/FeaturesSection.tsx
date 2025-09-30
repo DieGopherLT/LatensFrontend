@@ -1,53 +1,8 @@
-import { BookOpen, Brain, FolderGit2, Shield, Target, Zap } from 'lucide-react';
+import { features } from '../../constants/features';
 
 const FeaturesSection = () => {
-  const features = [
-    {
-      icon: <Brain className="h-8 w-8" />,
-      title: 'Sleep Score Analysis',
-      description:
-        "Intelligent assessment of your project's dormancy level using commit patterns, issue activity, and development momentum.",
-      highlight: 'AI-Powered',
-    },
-    {
-      icon: <BookOpen className="h-8 w-8" />,
-      title: 'Latens Recovery',
-      description:
-        'Comprehensive memory reconstruction that captures where you left off, including pending tasks, recent changes, and development context.',
-      highlight: 'Context-Aware',
-    },
-    {
-      icon: <Zap className="h-8 w-8" />,
-      title: 'Instant Awakening',
-      description:
-        'Get back to productive development in minutes with prioritized task suggestions and contextual reminders.',
-      highlight: 'Lightning Fast',
-    },
-    {
-      icon: <Target className="h-8 w-8" />,
-      title: 'Smart Recommendations',
-      description:
-        "Actionable next steps based on your project's current state, dependencies, and development history.",
-      highlight: 'Personalized',
-    },
-    {
-      icon: <Shield className="h-8 w-8" />,
-      title: 'Privacy First',
-      description:
-        'All analysis happens securely. Your code stays on GitHub, we only access public metadata and repository insights.',
-      highlight: 'Secure',
-    },
-    {
-      icon: <FolderGit2 className="h-8 w-8" />,
-      title: 'Multi-Repository Support',
-      description:
-        'Manage multiple sleeping projects from a unified dashboard with cross-project insights and dependencies tracking.',
-      highlight: 'Scalable',
-    },
-  ];
-
   return (
-    <section className="bg-muted/30 py-12 md:py-16 lg:py-20" id="features">
+    <section className="bg-muted/30 py-10 md:py-16 lg:py-20" id="features">
       <div className="container mx-auto px-6">
         <div className="mx-auto mb-16 max-w-3xl text-center">
           <div className="mb-6 inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-4 py-2 text-sm text-primary">
@@ -94,8 +49,6 @@ const FeaturesSection = () => {
             </div>
           ))}
         </div>
-
-
       </div>
     </section>
   );

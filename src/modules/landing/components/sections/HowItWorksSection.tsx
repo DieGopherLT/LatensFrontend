@@ -1,42 +1,7 @@
 import clsx from 'clsx';
-import { BookOpen, Brain, Github, Zap } from 'lucide-react';
+import { steps } from '../../constants/features';
 
 const HowItWorksSection = () => {
-  const steps = [
-    {
-      step: '01',
-      title: 'Connect Repository',
-      description:
-        'Authenticate with GitHub and select the repository you want to analyze. Latens securely accesses only the metadata needed for analysis.',
-      icon: <Github className="h-8 w-8" />,
-      color: 'aurora',
-    },
-    {
-      step: '02',
-      title: 'Sleep Analysis',
-      description:
-        "Our AI analyzes commit patterns, issue activity, PR status, and development momentum to calculate your project's Sleep Score.",
-      icon: <Brain className="h-8 w-8" />,
-      color: 'blue',
-    },
-    {
-      step: '03',
-      title: 'Memory Recovery',
-      description:
-        'Latens reconstructs your development context including recent changes, open issues, pending tasks, and architectural decisions.',
-      icon: <BookOpen className="h-8 w-8" />,
-      color: 'gold',
-    },
-    {
-      step: '04',
-      title: 'Smart Awakening',
-      description:
-        "Get personalized recommendations for next steps, priority tasks, and development paths based on your project's current state.",
-      icon: <Zap className="h-8 w-8" />,
-      color: 'success',
-    },
-  ];
-
   return (
     <section className="py-12 md:py-16 lg:py-20" id="how-it-works">
       <div className="container mx-auto px-6">
@@ -175,8 +140,6 @@ const HowItWorksSection = () => {
             </div>
           </div>
         </div>
-
-
       </div>
     </section>
   );

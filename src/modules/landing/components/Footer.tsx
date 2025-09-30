@@ -1,35 +1,15 @@
 import { Coffee, Github, Heart } from 'lucide-react';
+import { footerLinks } from '../constants/footer';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-
-  const footerLinks = {
-    product: [
-      { name: 'Features', href: '#features' },
-      { name: 'How it Works', href: '#how-it-works' },
-      { name: 'Sleep States', href: '#sleep-states' },
-      { name: 'Pricing', href: '#pricing' },
-    ],
-    resources: [
-      { name: 'Documentation', href: '/docs' },
-      { name: 'API Reference', href: '/api' },
-      { name: 'GitHub', href: 'https://github.com/latens' },
-      { name: 'Blog', href: '/blog' },
-    ],
-    company: [
-      { name: 'About', href: '/about' },
-      { name: 'Privacy', href: '/privacy' },
-      { name: 'Terms', href: '/terms' },
-      { name: 'Contact', href: '/contact' },
-    ],
-  };
 
   return (
     <footer className="border-t border-border bg-muted/30">
       <div className="container mx-auto px-6 py-16">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-12">
           {/* Brand section */}
-          <div className="lg:col-span-5">
+          <div className="flex flex-col items-center text-center md:items-start md:text-left lg:col-span-5">
             <div className="mb-4 flex items-center space-x-2">
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent">
                 <div className="sleep-light-decoration h-4 w-4 rounded-full bg-background" />
@@ -42,7 +22,7 @@ const Footer = () => {
               back to productive development in minutes, not hours.
             </p>
 
-            <div className="flex items-center space-x-4">
+            <div className="flex flex-col items-center space-y-4 md:flex-row md:items-center md:space-y-0 md:space-x-4">
               <a
                 aria-label="GitHub"
                 className="group interactive-glow rounded-lg bg-muted p-2 text-muted-foreground transition-all duration-300 hover:scale-110 hover:rotate-6 hover:bg-muted/80 hover:text-foreground hover:shadow-lg hover:shadow-primary/20"
@@ -61,7 +41,7 @@ const Footer = () => {
           </div>
 
           {/* Links sections */}
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:col-span-7">
+          <div className="grid grid-cols-1 gap-8 text-center sm:grid-cols-3 md:text-left lg:col-span-7">
             <div>
               <h3 className="mb-4 text-sm font-bold tracking-wide text-foreground uppercase">
                 Product

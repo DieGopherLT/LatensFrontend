@@ -1,12 +1,11 @@
 'use client';
 
 import { CheckCircle2, Shield, Users } from 'lucide-react';
-
 import GitHubAuthButton from '../navigation/GitHubAuthButton';
 
 const HeroSection = () => {
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
+    <section className="relative flex min-h-[calc(100vh-4rem)] items-center justify-center overflow-hidden md:min-h-screen">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5" />
 
@@ -26,7 +25,7 @@ const HeroSection = () => {
       <div className="relative z-10 container mx-auto px-6 py-12 md:py-16 lg:py-20">
         <div className="mx-auto max-w-4xl text-center">
           {/* Badge */}
-          <div className="animate-sleep-awaken mb-8 inline-flex items-center rounded-full border border-border/50 bg-muted/50 px-4 py-2 text-sm text-muted-foreground">
+          <div className="animate-sleep-awaken my-8 inline-flex items-center rounded-full border border-border/50 bg-muted/50 px-4 py-2 text-sm text-muted-foreground">
             <div className="animate-sleep-pulse mr-2 h-2 w-2 rounded-full bg-primary" />
             Awaken Your Sleeping Projects
           </div>
@@ -60,7 +59,7 @@ const HeroSection = () => {
               <div className="h-2 rounded-full bg-violet-600" style={{ width: '67%' }} />
             </div>
             <div className="text-xs text-muted-foreground">
-              Deep Sleep • Blog abandonado hace 4 meses
+              Deep Sleep • Blog abandoned 4 months ago
             </div>
           </div>
 
@@ -88,8 +87,6 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-
-
     </section>
   );
 };
