@@ -29,4 +29,5 @@ export interface GitHubRepository {
   pull_requests_count: number;
   primary_language: PrimaryLanguage;
   license: string;
+  sleep_score: number;
 }

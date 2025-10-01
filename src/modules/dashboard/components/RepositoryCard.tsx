@@ -50,6 +50,14 @@ const RepositoryCard = ({ repository, onCardClick }: RepositoryCardProps) => {
     return null;
   };
 
+  const getSleepState = (score: number) => {
+    if (score <= 30) return { label: 'Light Sleep', color: 'text-success' };
+    if (score <= 60) return { label: 'Standard Sleep', color: 'text-warning' };
+    return { label: 'Deep Sleep', color: 'text-destructive' };
+  };
+
+  const sleepState = getSleepState(repository.sleep_score);
+
   return (
     <div
       className={`
@@ -91,6 +99,22 @@ const RepositoryCard = ({ repository, onCardClick }: RepositoryCardProps) => {
         <p className="text-sm text-muted-foreground truncate">
           {repository.full_name}
         </p>
+      </div>
+
+      {/* Sleep Score */}
+      <div className="mb-4 flex items-center justify-between">
+        <div className="flex items-center space-x-2">
+          <span className="text-sm text-muted-foreground">Sleep State:</span>
+          <span className={`text-sm font-medium ${sleepState.color}`}>
+            {sleepState.label}
+          </span>
+        </div>
+        <div className="flex items-center space-x-2">
+          <span className="text-sm text-muted-foreground">Score:</span>
+          <span className={`text-sm font-semibold ${sleepState.color}`}>
+            {repository.sleep_score}
+          </span>
+        </div>
       </div>
 
       {/* Description */}
