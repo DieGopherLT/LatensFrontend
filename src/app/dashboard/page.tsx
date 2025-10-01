@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { useSession } from 'next-auth/react';
-import { redirect } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 
 import {
   RepositoryGrid,
@@ -13,6 +13,7 @@ import {
 } from '@/modules/dashboard';
 
 export default function DashboardPage() {
+  const router = useRouter();
   const { data: session, status } = useSession();
 
   // TanStack Query hooks
@@ -50,8 +51,7 @@ export default function DashboardPage() {
   }, [syncMutation]);
 
   const handleRepositoryClick = (repository: GitHubRepository) => {
-    // TODO: Navigate to repository detail page
-    console.log('Repository clicked:', repository.name);
+    router.push(`/awakening/${repository.id || repository.github_id}`);
   };
 
   if (status === 'loading') {
