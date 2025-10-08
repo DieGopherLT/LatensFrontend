@@ -1,0 +1,164 @@
+/* Base card styles */
+.card {
+  position: relative;
+  padding: 1.5rem;
+  padding-left: 1.75rem;
+  border-radius: 0.75rem;
+  border-left: 4px solid var(--border-color);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--card-bg) 60%, var(--gradient-color) 100%);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+/* Light Sleep animations */
+.lightSleep {
+  animation: pulseLight 3s ease-in-out infinite;
+}
+
+@keyframes pulseLight {
+  0%, 100% {
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.1),
+      0 0 0 1px var(--glow-color);
+  }
+  50% {
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.1),
+      0 0 0 2px var(--glow-color),
+      0 0 12px var(--glow-color);
+  }
+}
+
+/* Standard Sleep animations */
+.standardSleep {
+  animation: pulseStandard 4s ease-in-out infinite;
+  opacity: 0.92;
+}
+
+.standardSleep:hover {
+  opacity: 1;
+}
+
+@keyframes pulseStandard {
+  0%, 100% {
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.1),
+      0 0 0 1px var(--glow-color);
+  }
+  50% {
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.1),
+      0 0 0 2px var(--glow-color),
+      0 0 16px var(--glow-color);
+  }
+}
+
+/* Deep Sleep animations */
+.deepSleep {
+  animation: pulseDeep 5s ease-in-out infinite;
+  opacity: 0.85;
+}
+
+.deepSleep:hover {
+  opacity: 1;
+}
+
+@keyframes pulseDeep {
+  0%, 100% {
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.1),
+      0 0 0 1px var(--glow-color);
+  }
+  50% {
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.1),
+      0 0 0 2px var(--glow-color),
+      0 0 20px var(--glow-color);
+  }
+}
+
+/* Midnight theme - stronger shadows */
+[data-theme='midnight'] .lightSleep {
+  animation: pulseLightDark 3s ease-in-out infinite;
+}
+
+[data-theme='midnight'] .standardSleep {
+  animation: pulseStandardDark 4s ease-in-out infinite;
+}
+
+[data-theme='midnight'] .deepSleep {
+  animation: pulseDeepDark 5s ease-in-out infinite;
+}
+
+@keyframes pulseLightDark {
+  0%, 100% {
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.3),
+      0 0 0 1px var(--glow-color);
+  }
+  50% {
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.3),
+      0 0 0 2px var(--glow-color),
+      0 0 12px var(--glow-color);
+  }
+}
+
+@keyframes pulseStandardDark {
+  0%, 100% {
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.3),
+      0 0 0 1px var(--glow-color);
+  }
+  50% {
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.3),
+      0 0 0 2px var(--glow-color),
+      0 0 16px var(--glow-color);
+  }
+}
+
+@keyframes pulseDeepDark {
+  0%, 100% {
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.3),
+      0 0 0 1px var(--glow-color);
+  }
+  50% {
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.3),
+      0 0 0 2px var(--glow-color),
+      0 0 20px var(--glow-color);
+  }
+}
+
+/* Hover vignette effect */
+.card:hover {
+  box-shadow:
+    inset 0 0 45px -10px var(--glow-color),
+    0 8px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+[data-theme='midnight'] .card:hover {
+  box-shadow:
+    inset 0 0 60px -10px var(--glow-color),
+    0 8px 25px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .lightSleep,
+  .standardSleep,
+  .deepSleep,
+  [data-theme='midnight'] .lightSleep,
+  [data-theme='midnight'] .standardSleep,
+  [data-theme='midnight'] .deepSleep {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+}

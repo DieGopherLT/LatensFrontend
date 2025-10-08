@@ -156,9 +156,9 @@ Inside the component:
 
 #### Content rendering
 
-- Avoid using ternaries, always use `&&` and handle all edge cases.
+- **Avoid using ternaries, always use `&&` and handle all edge cases**.
 - If looped content is 40+ lines of code, extract it into a component.
-- Use `clsx` for dynamic, conditional styles.
+- Use `clsx` for dynamic, conditional styles in new new and existing components.
 - If a component should not be rendered, return null.
 
 ### Tailwind CSS 4 Integration
