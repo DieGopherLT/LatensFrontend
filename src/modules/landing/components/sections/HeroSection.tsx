@@ -74,7 +74,7 @@ const HeroSection = () => {
           <div className="flex flex-col items-center justify-center space-y-2 text-sm text-muted-foreground sm:flex-row sm:space-y-0 sm:space-x-8">
             <div className="flex items-center space-x-2">
               <CheckCircle2 className="h-4 w-4 text-primary" />
-              <span>Free & Open Source</span>
+              <span>Early Access</span>
             </div>
             <div className="flex items-center space-x-2">
               <Shield className="h-4 w-4 text-primary" />
@@ -82,7 +82,7 @@ const HeroSection = () => {
             </div>
             <div className="flex items-center space-x-2">
               <Users className="h-4 w-4 text-primary" />
-              <span>Active Community</span>
+              <span>Quick Setup</span>
             </div>
           </div>
         </div>

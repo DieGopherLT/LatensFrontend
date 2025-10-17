@@ -50,10 +50,15 @@ const Footer = () => {
                 {footerLinks.product.map((link) => (
                   <li key={link.name}>
                     <a
-                      className="text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground"
+                      className="group inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground"
                       href={link.href}
                     >
                       {link.name}
+                      {link.comingSoon && (
+                        <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-medium text-primary">
+                          Soon
+                        </span>
+                      )}
                     </a>
                   </li>
                 ))}
@@ -68,12 +73,17 @@ const Footer = () => {
                 {footerLinks.resources.map((link) => (
                   <li key={link.name}>
                     <a
-                      className="text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground"
+                      className="group inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground"
                       href={link.href}
                       rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                       target={link.href.startsWith('http') ? '_blank' : undefined}
                     >
                       {link.name}
+                      {link.comingSoon && (
+                        <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-medium text-primary">
+                          Soon
+                        </span>
+                      )}
                     </a>
                   </li>
                 ))}
@@ -88,10 +98,15 @@ const Footer = () => {
                 {footerLinks.company.map((link) => (
                   <li key={link.name}>
                     <a
-                      className="text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground"
+                      className="group inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground"
                       href={link.href}
                     >
                       {link.name}
+                      {link.comingSoon && (
+                        <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-medium text-primary">
+                          Soon
+                        </span>
+                      )}
                     </a>
                   </li>
                 ))}

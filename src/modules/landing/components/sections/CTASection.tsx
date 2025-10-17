@@ -1,5 +1,3 @@
-import { Star } from 'lucide-react';
-
 import GitHubAuthButton from '../navigation/GitHubAuthButton';
 
 
@@ -36,31 +34,9 @@ const CTASection = () => {
               </h2>
 
               <p className="mx-auto mb-8 max-w-3xl text-xl leading-relaxed text-muted-foreground">
-                Join thousands of developers who have successfully awakened their dormant
-                repositories and returned to productive development with Latens.
+                Be among the first to experience a new way to resume development on your
+                sleeping projects with contextual memory and intelligent analysis.
               </p>
-            </div>
-
-            {/* Stats */}
-            <div className="mb-12 grid grid-cols-1 gap-8 md:grid-cols-3">
-              <div className="text-center">
-                <div className="mb-2 text-3xl font-bold text-primary md:text-4xl">500+</div>
-                <div className="text-sm tracking-wide text-muted-foreground uppercase">
-                  Projects Awakened
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="mb-2 text-3xl font-bold text-accent md:text-4xl">2.3x</div>
-                <div className="text-sm tracking-wide text-muted-foreground uppercase">
-                  Faster Resume Time
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="mb-2 text-3xl font-bold text-secondary md:text-4xl">95%</div>
-                <div className="text-sm tracking-wide text-muted-foreground uppercase">
-                  Context Recovery Rate
-                </div>
-              </div>
             </div>
 
             {/* Action buttons */}
@@ -80,7 +56,7 @@ const CTASection = () => {
                     fillRule="evenodd"
                   />
                 </svg>
-                <span>Free to start</span>
+                <span>Free early access</span>
               </div>
               <div className="flex items-center space-x-2">
                 <svg className="h-4 w-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
@@ -96,31 +72,7 @@ const CTASection = () => {
                 <svg className="h-4 w-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span>5-minute setup</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom testimonial */}
-          <div className="mx-auto mt-16 max-w-2xl">
-            <div className="rounded-2xl border border-border/30 bg-card/30 p-6 backdrop-blur-sm">
-              <div className="mb-4 flex items-center justify-center space-x-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 fill-current text-warning" />
-                ))}
-              </div>
-              <blockquote className="mb-4 text-lg leading-relaxed text-muted-foreground italic">
-                &ldquo;Latens helped me revive a year-old project in just 20 minutes. I knew exactly
-                where I left off and what to work on next.&rdquo;
-              </blockquote>
-              <div className="flex items-center justify-center space-x-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent">
-                  <span className="text-sm font-bold text-white">JS</span>
-                </div>
-                <div className="text-left">
-                  <div className="text-sm font-semibold text-foreground">Jane Smith</div>
-                  <div className="text-xs text-muted-foreground">Senior Developer @TechCorp</div>
-                </div>
+                <span>Quick setup</span>
               </div>
             </div>
           </div>
