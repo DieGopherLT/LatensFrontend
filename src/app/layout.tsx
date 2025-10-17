@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 
 import { SessionProvider } from '@/modules/auth';
-import { QueryProvider } from '@/modules/core';
+import { QueryProvider, ThemeProvider } from '@/modules/core';
 
 import './globals.css';
 
@@ -30,9 +30,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <QueryProvider>
-          <SessionProvider>{children}</SessionProvider>
-        </QueryProvider>
+        <ThemeProvider>
+          <QueryProvider>
+            <SessionProvider>{children}</SessionProvider>
+          </QueryProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
