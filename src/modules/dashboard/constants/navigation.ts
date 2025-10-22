@@ -1,12 +1,9 @@
 import {
   Archive,
-  BarChart3,
-  Clock,
   FolderOpen,
   Github,
   Home,
   Settings,
-  Star,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -29,21 +26,6 @@ export const MAIN_NAVIGATION_ITEMS: NavigationItem[] = [
     name: 'Repositories',
     href: '/dashboard/repositories',
     icon: FolderOpen,
-  },
-  {
-    name: 'Analytics',
-    href: '/dashboard/analytics',
-    icon: BarChart3,
-  },
-  {
-    name: 'Starred',
-    href: '/dashboard/starred',
-    icon: Star,
-  },
-  {
-    name: 'Recent',
-    href: '/dashboard/recent',
-    icon: Clock,
   },
   {
     name: 'Archived',

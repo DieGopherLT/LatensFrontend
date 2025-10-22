@@ -15,11 +15,16 @@ import {
 } from 'lucide-react';
 
 import { GitHubRepository } from '../../types/repository';
+import RepositoryCheckbox from './RepositoryCheckbox';
 import styles from './RepositoryCard.module.css';
 
 interface RepositoryCardProps {
   repository: GitHubRepository;
   onCardClick?: (repository: GitHubRepository) => void;
+  isSelected?: boolean;
+  selectionMode?: boolean;
+  onCheckboxChange?: (checked: boolean) => void;
+  isArchived?: boolean;
 }
 
 const formatDate = (dateString: string) => {
@@ -91,8 +96,16 @@ const getSleepState = (score: number) => {
   };
 };
 
-const RepositoryCard = ({ repository, onCardClick }: RepositoryCardProps) => {
+const RepositoryCard = ({
+  repository,
+  onCardClick,
+  isSelected = false,
+  selectionMode = false,
+  onCheckboxChange,
+  isArchived = false,
+}: RepositoryCardProps) => {
   const [theme, setTheme] = useState<'dawn' | 'midnight'>('dawn');
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const currentTheme = document.documentElement.getAttribute('data-theme') as 'dawn' | 'midnight' || 'dawn';
@@ -129,12 +142,14 @@ const RepositoryCard = ({ repository, onCardClick }: RepositoryCardProps) => {
   return (
     <div
       className={clsx(
-        'group',
+        'group relative',
         styles.card,
         sleepState.className,
         onCardClick && 'cursor-pointer',
         repository.is_archived && 'opacity-75',
-        repository.is_disabled && 'opacity-60'
+        repository.is_disabled && 'opacity-60',
+        isSelected && 'scale-[0.98] border-primary bg-primary/5',
+        isArchived && 'opacity-85 grayscale-[0.1]'
       )}
       style={{
         ['--border-color' as string]: isMidnight ? sleepState.borderColorMidnight : sleepState.borderColorDawn,
@@ -143,7 +158,21 @@ const RepositoryCard = ({ repository, onCardClick }: RepositoryCardProps) => {
         ['--card-bg' as string]: 'var(--color-card)'
       }}
       onClick={handleCardClick}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
+      {/* Checkbox overlay */}
+      {onCheckboxChange && (
+        <RepositoryCheckbox
+          checked={isSelected}
+          onChange={onCheckboxChange}
+          repoId={repository.github_id}
+          repoName={repository.name}
+          isHovered={isHovered}
+          selectionMode={selectionMode}
+        />
+      )}
+
       {/* Sleep icon decoration */}
       <div className={clsx(
         'absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-lg opacity-70',

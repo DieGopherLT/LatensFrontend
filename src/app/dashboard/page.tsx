@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
 
 import {
-  RepositoryGrid,
+  DashboardView,
   SyncLoader,
   useRepositories,
   useSyncRepositories,
@@ -54,6 +54,10 @@ export default function DashboardPage() {
     console.log('Repository clicked:', repository.name);
   };
 
+  const handleSyncClick = () => {
+    syncMutation.mutate();
+  };
+
   if (status === 'loading') {
     return (
       <div className="flex min-h-96 items-center justify-center">
@@ -62,31 +66,11 @@ export default function DashboardPage() {
     );
   }
 
-  return (
-    <>
-      <div className="space-y-6">
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-foreground">Dashboard</h1>
-            <p className="mt-1 text-muted-foreground">
-              Welcome back, {session?.user?.name || session?.user?.username}
-            </p>
-          </div>
-
-          {/* Repository count */}
-          {repositories.length > 0 && (
-            <div className="text-right">
-              <div className="text-2xl font-bold text-foreground">{repositories.length}</div>
-              <div className="text-sm text-muted-foreground">
-                {repositories.length === 1 ? 'repository' : 'repositories'}
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* Error state */}
-        {(error || syncMutation.isError) && (
+  // Error state
+  if (error || syncMutation.isError) {
+    return (
+      <>
+        <div className="space-y-6">
           <div className="rounded-lg border border-destructive/20 bg-destructive/10 p-4">
             <p className="text-destructive">
               {error instanceof Error && error.message}
@@ -112,17 +96,34 @@ export default function DashboardPage() {
               {isLoading || syncMutation.isPending ? 'Loading...' : 'Try again'}
             </button>
           </div>
-        )}
+        </div>
 
-        {/* Repository Grid */}
-        <RepositoryGrid
-          isLoading={isLoading}
-          repositories={repositories}
-          onRepositoryClick={handleRepositoryClick}
+        <SyncLoader
+          isVisible={syncMutation.isPending}
+          message={syncMutation.variables ? 'Syncing repositories from GitHub...' : undefined}
         />
-      </div>
+      </>
+    );
+  }
 
-      {/* Sync Loader */}
+  // Loading state
+  if (isLoading) {
+    return (
+      <div className="flex min-h-96 items-center justify-center">
+        <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-primary"></div>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <DashboardView
+        repositories={repositories}
+        userName={session?.user?.name || session?.user?.username}
+        onRepositoryClick={handleRepositoryClick}
+        onSyncClick={handleSyncClick}
+      />
+
       <SyncLoader
         isVisible={syncMutation.isPending}
         message={syncMutation.variables ? 'Syncing repositories from GitHub...' : undefined}

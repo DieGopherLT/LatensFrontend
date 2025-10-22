@@ -19,6 +19,7 @@ export interface GitHubRepository {
   is_fork: boolean;
   is_disabled: boolean;
   is_archived: boolean;
+  is_hidden: boolean;
   url: string;
   default_branch: DefaultBranch;
   created_at: string;
